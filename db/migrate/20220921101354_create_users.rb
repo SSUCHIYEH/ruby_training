@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :password
       t.integer :role
-      
     end
     add_index :users, :name, unique: true
   end

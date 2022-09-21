@@ -9,7 +9,6 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.integer :priority
       t.integer :tag_id
       t.integer :user_id
-
     end
   end
 end
