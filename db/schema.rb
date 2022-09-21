@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_102151) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_102948) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "title"
