@@ -12,6 +12,11 @@
 
   <body>
     <h1>所有任務</h1>
+    <% if flash.any? %>
+        <% flash.each do |type, msg| %>
+        <%= msg %><br/>
+        <% end %>
+    <% end %>
     <%= link_to "新增任務", new_task_path %>
     <table>
   <thead>
