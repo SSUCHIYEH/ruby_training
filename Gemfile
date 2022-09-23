@@ -42,6 +42,8 @@ gem "bootsnap", require: false
 
 gem 'pg', '~> 1.4', '>= 1.4.3'
 
+gem 'rubocop', '~> 1.36'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -51,6 +53,9 @@ gem 'pg', '~> 1.4', '>= 1.4.3'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+  gem 'faker'
+  gem 'factory_bot', '~> 6.2', '>= 6.2.1'
 end
 
 group :development do
