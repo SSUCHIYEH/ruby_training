@@ -3,10 +3,10 @@
     <%= f.text_field :title %> <br />
 
     <%= f.label :status, "狀態" %>
-    <%= f.select :status, options_for_select($status_options.map {|o|[o[:label],o[:value]]},@task.status) %>                 
+    <%= f.select :status, options_for_select(Task.statuses.keys, @task.status) %>                 
     
     <%= f.label :priority, "優先" %>
-    <%= f.select :priority, options_for_select($priority_options.map {|o|[o[:label],o[:value]]},@task.priority) %><br />     
+    <%= f.select :priority, options_for_select(Task.priorities.keys,@task.priority) %><br />     
 
     <%= f.label :start_time, "開始時間" %>
     <%= f.date_field :start_time, as: :date, value: f.object.try(:strftime,"%Y/%m/%d") %> 
