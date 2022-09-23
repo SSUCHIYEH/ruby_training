@@ -1,0 +1,35 @@
+<h1>所有任務</h1>
+    <% if flash.any? %>
+        <% flash.each do |type, msg| %>
+        <%= msg %><br/>
+        <% end %>
+    <% end %>
+    <%= link_to "新增任務", new_task_path %>
+    <table>
+  <thead>
+    <tr>
+      <td>標題</td>
+      <td>狀態</td>
+      <td>優先</td>
+      <td>開始日期</td>
+      <td>結束日期</td>
+      <td>動作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.status %></td>
+      <td><%= task.priority %></td>
+      <td><%= task.start_time %></td>
+      <td><%= task.end_time %></td>
+      <td>
+        <%= link_to "編輯", edit_task_path(task) %>
+      </td>
+      <td>
+        <%= link_to "刪除", task ,data: { turbo_method: :delete, turbo_confirm:"確認刪除" } %>
+      </td>
+    </tr>
+    <% end %>
+</tbody>
