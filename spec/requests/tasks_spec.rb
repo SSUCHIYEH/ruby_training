@@ -1,16 +1,17 @@
 require 'rails_helper'
 require 'factories/task'
+require 'faker'
 
 RSpec.describe 'Tasks', type: :request do
   let(:valid_attributes) do
     {
-       title: 'task1',
-       content: 'task1',
-       start_time: '2022-09-22',
-       end_time: '2022-09-23',
-       status: 'NotStarted',
-       priority: 'High'
-     }
+      title: Faker::Hobby.activity,
+      content: Faker::Lorem.sentence,
+      start_time: Faker::Date.forward(days: 23),
+      end_time: Faker::Date.forward(days: 23),
+      status: 'NotStarted',
+      priority: 'High'
+    }
   end
 
   describe '.get_all' do
@@ -55,10 +56,10 @@ RSpec.describe 'Tasks', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          title: 'task1',
-          content: 'task1',
-          start_time: '2022-09-22',
-          end_time: '2022-09-23',
+          title: Faker::Hobby.activity,
+          content: Faker::Lorem.sentence,
+          start_time: Faker::Date.forward(days: 23),
+          end_time: Faker::Date.forward(days: 23),
           status: 'NotStarted',
           priority: 'High'
         }
