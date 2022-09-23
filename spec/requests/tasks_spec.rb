@@ -4,18 +4,18 @@ require 'factories/task'
 RSpec.describe 'Tasks', type: :request do
   let(:valid_attributes) do
     {
-      title: 'task1',
-      content: 'task1',
-      start_time: '2022-09-22',
-      end_time: '2022-09-23',
-      status: 'NotStarted',
-      priority: 'High'
-    }
+       title: 'task1',
+       content: 'task1',
+       start_time: '2022-09-22',
+       end_time: '2022-09-23',
+       status: 'NotStarted',
+       priority: 'High'
+     }
   end
 
   describe '.get_all' do
     it 'read all tasks' do
-      create(:task)
+      create(:task, :init)
       get tasks_path
       expect(response).to be_successful
     end
@@ -30,7 +30,7 @@ RSpec.describe 'Tasks', type: :request do
 
   describe '.edit' do
     it 'edit tasks' do
-      task = create(:task)
+      task = create(:task, :init)
       get edit_task_path(task)
       expect(response).to be_successful
     end
@@ -65,7 +65,7 @@ RSpec.describe 'Tasks', type: :request do
       end
 
       it 'updates the requested task' do
-        task = create(:task)
+        task = create(:task, :important)
         patch task_path(task), params: { task: new_attributes }
         last_task = Task.last
         expect(last_task.title).to eq('task1')
@@ -73,7 +73,7 @@ RSpec.describe 'Tasks', type: :request do
       end
 
       it 'redirects to the article' do
-        task = Task.create! valid_attributes
+        task = create(:task, :important)
         patch task_path(task), params: { task: new_attributes }
         task.reload
         expect(response).to redirect_to(tasks_path)
@@ -83,14 +83,14 @@ RSpec.describe 'Tasks', type: :request do
 
   describe '.destroy' do
     it 'destroys the requested task' do
-      task = Task.create! valid_attributes
+      task = create(:task, :init)
       expect do
         delete task_path(task)
       end.to change(Task, :count).by(-1)
     end
 
     it 'redirects to the tasks list' do
-      task = Task.create! valid_attributes
+      task = create(:task, :init)
       delete task_path(task)
       expect(response).to redirect_to(tasks_path)
     end

@@ -9,5 +9,15 @@ FactoryBot.define do
     end_time { Faker::Date.forward(days: 23) }
     status { 'NotStarted' }
     priority { 'High' }
+
+    trait :init do
+      status { 'NotStarted' }
+      priority { 'Medium' }
+    end
+
+    trait :important do
+      status { 'InProgress' }
+      priority { 'High' }
+    end
   end
 end
