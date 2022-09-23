@@ -15,6 +15,7 @@ module RubyTraining
         g.factory_bot false
     end
     config.i18n.default_locale = 'zh-TW'
+    config.time_zone = 'Taipei'
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
