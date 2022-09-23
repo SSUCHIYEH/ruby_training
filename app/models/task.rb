@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   # belongs_to :user
   # belongs_to :tag
-  enum status: { NotStarted: 0, InProgress: 1, Compelete: 2 }
-  enum priority: { High: 0, Medium: 1, Low: 2 }
+  enum status: { notStarted: 0, inProgress: 1, complete: 2 }
+  enum priority: { high: 0, medium: 1, low: 2 }
 end

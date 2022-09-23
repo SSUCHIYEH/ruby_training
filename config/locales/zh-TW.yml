@@ -1,0 +1,28 @@
+zh-TW:
+  edit: "編輯"
+  delete: "刪除"
+
+  tasks:
+    title: "標題"
+    priority: "優先"
+    priority_high: "優先"
+    priority_medium: "不急"
+    priority_low: "還好"
+    status: "狀態"
+    status_notStarted: "待處理"
+    status_inProgress: "處理中"
+    status_complete: "已完成"
+    start_time: "開始日期"
+    end_time: "結束日期"
+    tag: "標籤"
+    content: "內容"
+  
+  # task_status:
+  #   NotStarted: "待處理"
+  #   InProgress: "處理中"
+  #   Complete: "已完成"
+
+  helpers:
+    submit:
+      create: "新增任務"
+      update: "更新任務"

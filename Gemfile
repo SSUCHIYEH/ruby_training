@@ -42,6 +42,8 @@ gem 'bootsnap', require: false
 
 gem 'pg', '~> 1.4', '>= 1.4.3'
 
+gem 'rails-i18n'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
