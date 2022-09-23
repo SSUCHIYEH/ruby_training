@@ -16,7 +16,6 @@ class TasksController < ApplicationController
             redirect_to tasks_path, notice: "新增任務成功"
         else 
             render :new, notice: "任務新增失敗!"
-            @task.errors.full_messages
         end
     end
 
