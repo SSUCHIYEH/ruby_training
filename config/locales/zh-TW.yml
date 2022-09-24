@@ -1,6 +1,8 @@
 zh-TW:
   edit: "編輯"
   delete: "刪除"
+  back: "返回"
+  create_task: "新增任務"
 
   tasks:
     title: "標題"
@@ -16,13 +18,17 @@ zh-TW:
     end_time: "結束日期"
     tag: "標籤"
     content: "內容"
-  
-  # task_status:
-  #   NotStarted: "待處理"
-  #   InProgress: "處理中"
-  #   Complete: "已完成"
 
   helpers:
     submit:
       create: "新增任務"
       update: "更新任務"
+
+  message:
+    create_task_succeed: "任務新增成功"
+    create_task_failed: "任務新增失敗"
+    update_task_succeed: "任務更新成功"
+    update_task_failed: "任務更新失敗"
+    delete_task_confirm: "確認刪除"
+    delete_task_succeed: "任務刪除成功"
+    

@@ -27,7 +27,7 @@
         <%= link_to t("edit"), edit_task_path(task) %>
       </td>
       <td>
-        <%= link_to t("delete"), task ,data: { turbo_method: :delete, turbo_confirm:"確認刪除" } %>
+        <%= link_to t("delete"), task ,data: { turbo_method: :delete, turbo_confirm: t("message.delete_task_confirm") } %>
       </td>
     </tr>
     <% end %>
