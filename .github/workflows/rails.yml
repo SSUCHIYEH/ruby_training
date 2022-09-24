@@ -3,53 +3,31 @@ name: CI RSpec Tests
 on: push
 
 jobs:
-  verify:
-    name: Build
+  test:
     runs-on: ubuntu-latest
-
     services:
       postgres:
-        image: postgres:11
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
         env:
-          # postgreSQL 帳號密碼設定
-          POSTGRES_USER: rails_github_actions
-          POSTGRES_DB: rails_github_actions_test
-          POSTGRES_PASSWORD: ""
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
-      - uses: actions/checkout@v1
-      - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Add or replace dependency steps here
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
         with:
-          ruby-version: 3.0.0
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.13.0
-      - name: Install dependencies
-        run: |
-          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          yarn install
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: rails_github_actions
-        run: |
-          cp config/database.ci.yml config/database.yml
-          rake db:create db:migrate
+          bundler-cache: true
+      # Add or replace database setup steps here
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+      # Add or replace test runners here
       - name: Run tests
-        env:
-          PGHOST: localhost
-          PGUSER: rails_github_actions
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
-          RAILS_ENV: test
-        run: rspec
+        run: bin/rspec
