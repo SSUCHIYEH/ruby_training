@@ -52,6 +52,7 @@ RSpec.describe 'Tasks', type: :request do
       follow_redirect!
 
       expect(response.body).to include("任務新增成功")
+      expect(response.body).to include('新增任務成功')
     end
 
     it 'does not render a different template' do
