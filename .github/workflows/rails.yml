@@ -3,7 +3,8 @@ name: CI RSpec Tests
 on: push
 
 jobs:
-  test:
+  Rspec:
+    name: Rspec
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -31,3 +32,17 @@ jobs:
       # Add or replace test runners here
       - name: Run tests
         run: bundle exec rspec spec
+  
+  Rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rubocop
+        run: bundle exec rubocop
+  
