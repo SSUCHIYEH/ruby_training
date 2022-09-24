@@ -47,12 +47,10 @@ RSpec.describe 'Tasks', type: :request do
       expect(response).to have_http_status(:ok)
 
       post tasks_path, params: { task: valid_attributes }
-
       expect(response).to redirect_to(tasks_path)
       follow_redirect!
 
-      expect(response.body).to include("任務新增成功")
-      expect(response.body).to include('新增任務成功')
+      expect(response.body).to include('任務新增成功')
     end
 
     it 'does not render a different template' do
