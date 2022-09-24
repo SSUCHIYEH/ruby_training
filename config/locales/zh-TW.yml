@@ -1,0 +1,34 @@
+zh-TW:
+  edit: "編輯"
+  delete: "刪除"
+  back: "返回"
+  create_task: "新增任務"
+
+  tasks:
+    title: "標題"
+    priority: "優先"
+    priority_high: "優先"
+    priority_medium: "不急"
+    priority_low: "還好"
+    status: "狀態"
+    status_notStarted: "待處理"
+    status_inProgress: "處理中"
+    status_complete: "已完成"
+    start_time: "開始日期"
+    end_time: "結束日期"
+    tag: "標籤"
+    content: "內容"
+
+  helpers:
+    submit:
+      create: "新增任務"
+      update: "更新任務"
+
+  message:
+    create_task_succeed: "任務新增成功"
+    create_task_failed: "任務新增失敗"
+    update_task_succeed: "任務更新成功"
+    update_task_failed: "任務更新失敗"
+    delete_task_confirm: "確認刪除"
+    delete_task_succeed: "任務刪除成功"
+    

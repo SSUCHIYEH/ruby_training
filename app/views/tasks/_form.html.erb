@@ -1,20 +1,20 @@
 <%= form_for(@task) do |f| %>
-    <%= f.label :title, "標題" %>
+    <%= f.label :title, t("tasks.title") %>
     <%= f.text_field :title %> <br />
 
-    <%= f.label :status, "狀態" %>
-    <%= f.select :status, options_for_select(Task.statuses.keys, @task.status) %>                 
+    <%= f.label :status, t("tasks.status") %>
+    <%= f.select :status, options_for_select(Task.statuses.map {|k,v| [t("tasks.status_#{k}"),k]} , @task.status) %>                 
     
-    <%= f.label :priority, "優先" %>
-    <%= f.select :priority, options_for_select(Task.priorities.keys,@task.priority) %><br />     
+    <%= f.label :priority, t("tasks.priority") %>
+    <%= f.select :priority, options_for_select(Task.priorities.map {|k,v| [t("tasks.priority_#{k}"),k]} , @task.priority) %><br />     
 
-    <%= f.label :start_time, "開始時間" %>
+    <%= f.label :start_time, t("tasks.start_time") %>
     <%= f.date_field :start_time, as: :date, value: f.object.try(:strftime,"%Y/%m/%d") %> 
 
-    <%= f.label :end_time, "結束時間" %>
+    <%= f.label :end_time, t("tasks.end_time") %>
     <%= f.date_field :end_time, as: :date, value: f.object.try(:strftime,"%Y/%m/%d") %> <br />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-    <%= f.label :content, "內容" %>
+    <%= f.label :content, t("tasks.content") %>
     <%= f.text_area :content %> <br />        
 
     <%= f.submit %>

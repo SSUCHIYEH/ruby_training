@@ -4,17 +4,17 @@ FactoryBot.define do
     content { Faker::Lorem.sentence }
     start_time { Faker::Date.forward(days: 23) }
     end_time { Faker::Date.forward(days: 23) }
-    status { 'NotStarted' }
-    priority { 'High' }
+    status { 'notStarted' }
+    priority { 'high' }
 
     trait :init do
-      status { 'NotStarted' }
-      priority { 'Medium' }
+      status { 'notStarted' }
+      priority { 'medium' }
     end
 
     trait :important do
-      status { 'InProgress' }
-      priority { 'High' }
+      status { 'inProgress' }
+      priority { 'high' }
     end
   end
 end

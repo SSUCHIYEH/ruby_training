@@ -8,27 +8,26 @@
     <table>
   <thead>
     <tr>
-      <td>標題</td>
-      <td>狀態</td>
-      <td>優先</td>
-      <td>開始日期</td>
-      <td>結束日期</td>
-      <td>動作</td>
+    <td><%= t("tasks.title") %></td>
+    <td><%= t("tasks.status") %></td>
+    <td><%= t("tasks.priority") %></td>
+    <td><%= t("tasks.start_time") %></td>
+    <td><%= t("tasks.end_time") %></td>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
-      <td><%= task.status %></td>
-      <td><%= task.priority %></td>
+      <td><%= t("tasks.status_#{task.status}") %></td>
+      <td><%= t("tasks.priority_#{task.priority}") %></td>
       <td><%= task.start_time %></td>
       <td><%= task.end_time %></td>
       <td>
-        <%= link_to "編輯", edit_task_path(task) %>
+        <%= link_to t("edit"), edit_task_path(task) %>
       </td>
       <td>
-        <%= link_to "刪除", task ,data: { turbo_method: :delete, turbo_confirm:"確認刪除" } %>
+        <%= link_to t("delete"), task ,data: { turbo_method: :delete, turbo_confirm: t("message.delete_task_confirm") } %>
       </td>
     </tr>
     <% end %>

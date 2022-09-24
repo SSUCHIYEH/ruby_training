@@ -12,8 +12,8 @@ RSpec.describe 'Tasks', type: :request do
       content: Faker::Lorem.sentence,
       start_time: Faker::Date.forward(days: 23),
       end_time: Faker::Date.forward(days: 23),
-      status: 'NotStarted',
-      priority: 'High'
+      status: 'notStarted',
+      priority: 'high'
     }
   end
 
@@ -21,9 +21,9 @@ RSpec.describe 'Tasks', type: :request do
     it 'read all tasks' do
       get tasks_path
       expect(response).to be_successful
-      expect(response.body).to include('NotStarted')
-      expect(response.body).to include('Medium')
-      expect(response.body).to include('TEST')
+      expect(response.body).to include("待處理")
+      expect(response.body).to include("不急")
+      expect(response.body).to include("TEST")
     end
   end
 
@@ -47,11 +47,10 @@ RSpec.describe 'Tasks', type: :request do
       expect(response).to have_http_status(:ok)
 
       post tasks_path, params: { task: valid_attributes }
-
       expect(response).to redirect_to(tasks_path)
       follow_redirect!
 
-      expect(response.body).to include('新增任務成功')
+      expect(response.body).to include('任務新增成功')
     end
 
     it 'does not render a different template' do
@@ -67,8 +66,8 @@ RSpec.describe 'Tasks', type: :request do
         content: Faker::Lorem.sentence,
         start_time: Faker::Date.forward(days: 23),
         end_time: Faker::Date.forward(days: 23),
-        status: 'NotStarted',
-        priority: 'High'
+        status: 'notStarted',
+        priority: 'high'
       }
     end
 
@@ -79,7 +78,7 @@ RSpec.describe 'Tasks', type: :request do
       patch task_path(task), params: { task: new_attributes }
       task.reload
       expect(task.title).to eq('UPDATE')
-      expect(task.status).to eq('NotStarted')
+      expect(task.status).to eq('notStarted')
     end
   end
 

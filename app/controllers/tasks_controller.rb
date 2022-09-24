@@ -13,9 +13,9 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save!
-      redirect_to tasks_path, notice: '新增任務成功'
+      redirect_to tasks_path, notice: t("message.create_task_succeed")
     else
-      render :new, notice: '任務新增失敗!'
+      render :new, notice: t("message.create_task_failed")
     end
   end
 
@@ -24,16 +24,16 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       # 成功
-      redirect_to tasks_path, notice: '任務更新成功!'
+      redirect_to tasks_path, notice: t("message.update_task_succeed")
     else
       # 失敗
-      render :edit
+      render :edit, notice: t("message.update_task_failed")
     end
   end
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: '任務刪除成功!'
+    redirect_to tasks_path, notice: t("message.delete_task_succeed")
   end
 
   private
