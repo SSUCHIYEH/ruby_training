@@ -18,7 +18,7 @@
   <tbody>
     <% @tasks.each do |task| %>
     <tr>
-      <td><%= task.title %></td>
+      <td id="title"><%= task.title %></td>
       <td><%= t("tasks.status_#{task.status}") %></td>
       <td><%= t("tasks.priority_#{task.priority}") %></td>
       <td><%= task.start_time %></td>
