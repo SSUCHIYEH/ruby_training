@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_172411) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_163321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "content"
     t.date "start_time"
     t.date "end_time"
-    t.integer "status"
-    t.integer "priority"
+    t.integer "status", null: false
+    t.integer "priority", null: false
     t.integer "tag_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -35,9 +35,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_172411) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
-    t.integer "role"
+    t.string "name", null: false
+    t.string "password", null: false
+    t.integer "role", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_users_on_name", unique: true

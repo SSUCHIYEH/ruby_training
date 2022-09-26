@@ -12,7 +12,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
-    if @task.save!
+    if @task.save
       redirect_to tasks_path, notice: t("message.create_task_succeed")
     else
       render :new, notice: t("message.create_task_failed")

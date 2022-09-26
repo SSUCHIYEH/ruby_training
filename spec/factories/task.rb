@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :task do
     title { Faker::Hobby.activity }
     content { Faker::Lorem.sentence }
-    start_time { Faker::Date.forward(days: 23) }
-    end_time { Faker::Date.forward(days: 23) }
+    start_time { Faker::Date.in_date_period(year: 2022, month: 9) }
+    end_time { Faker::Date.in_date_period(year: 2022, month: 10) }
     status { 'notStarted' }
     priority { 'high' }
 
