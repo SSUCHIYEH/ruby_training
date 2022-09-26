@@ -37,7 +37,7 @@
 
 ## Heroku部署
 ---
-[Heroku link](https://dashboard.heroku.com/apps/enigmatic-taiga-40583)
+[Heroku link](https://enigmatic-taiga-40583.herokuapp.com)
 
 Heroku-20 stack
 
