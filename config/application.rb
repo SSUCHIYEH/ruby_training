@@ -16,6 +16,7 @@ module RubyTraining
     end
     config.i18n.default_locale = 'zh-TW'
     config.time_zone = 'Taipei'
+    config.navigational_formats = ['*/*', :html, :turbo_stream]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
