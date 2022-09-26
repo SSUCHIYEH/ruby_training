@@ -3,21 +3,27 @@ require 'factories/task'
 require 'faker'
 
 RSpec.describe Task, type: :model do
-  describe 'title' do
-    let(:task) { build(:task, :init, title: "") }
+  let(:task) { build(:task, :init) }
 
-    it "not_allow_blank" do
-      task.save
-      expect(task.errors.full_messages.first).to include("Title不能為空白")
+  describe 'Validation' do
+    subject(:valid) { task.valid? }
+
+    # 資料齊全通過驗證
+    it { is_expected.to be_truthy }
+
+    # 錯誤情況
+    context "when title is blank" do
+      it {
+        task.title = ""
+        expect { valid }.to change { task.errors.messages[:title].first }.to include("不能為空白")
+      }
     end
-  end
 
-  describe 'end_time' do
-    let(:task) { build(:task, :init, :period_error) }
-
-    it "greater_or_qual_to start_time" do
-      task.save
-      expect(task.errors.full_messages.first).to include("End time必須大於或等於")
+    context "when end_time is less_than start_time" do
+      it {
+        task.end_time = Faker::Date.in_date_period(year: 2022, month: 8)
+        expect { valid }.to change { task.errors.messages[:end_time].first }.to include("必須大於或等於")
+      }
     end
   end
 end

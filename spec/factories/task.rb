@@ -16,10 +16,5 @@ FactoryBot.define do
       status { 'inProgress' }
       priority { 'high' }
     end
-
-    trait :period_error do
-      start_time { Faker::Date.in_date_period(year: 2022, month: 10) }
-      end_time { Faker::Date.in_date_period(year: 2022, month: 9) }
-    end
   end
 end
