@@ -33,3 +33,35 @@
 | id | Integer | 流水號 |
 | name | String | 標籤名 |
 
+
+
+## Heroku部署
+---
+[Heroku link](https://enigmatic-taiga-40583.herokuapp.com)
+
+Heroku-20 stack
+
+**登入heroku**
+```
+heroku login
+```
+
+**建立應用程式**
+```
+heroku create
+```
+
+**依據Ruby3.0.0 版本調整heroku stack**
+```
+heroku stack:set heroku-20
+```
+
+**將main分支推上heroku**
+```
+git push heroku main
+```
+
+**初次進行Migration**
+```
+heroku run rails db:migrate
+```
