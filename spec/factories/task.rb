@@ -16,5 +16,10 @@ FactoryBot.define do
       status { 'inProgress' }
       priority { 'high' }
     end
+
+    trait :next_year do
+      start_time { Faker::Date.in_date_period(year: 2023, month: 9) }
+      end_time { Faker::Date.in_date_period(year: 2023, month: 10) }
+    end
   end
 end

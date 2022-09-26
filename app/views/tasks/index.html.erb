@@ -8,9 +8,9 @@
 </br>
 <div class="dropdown">
   <p><%= @order_tag %></p>
-  <div class="dropdown-content">
-    <%= link_to  "依#{t("tasks.end_time")}降冪排序", tasks_path(order: "end_time", sort_by: "desc") %>
-    <%= link_to  "依#{t("tasks.end_time")}升冪排序", tasks_path(order: "end_time", sort_by: "asc") %>
+  <div class="dropdown-content" id="order_menu">
+    <%= link_to  "依#{t("tasks.end_time")}降冪排序", tasks_path(order: "end_time", sort_by: "desc"), id: "end_time_desc" %>
+    <%= link_to  "依#{t("tasks.end_time")}升冪排序", tasks_path(order: "end_time", sort_by: "asc"), id: "end_time_asc" %>
   </div>
 </div>
 <table>
