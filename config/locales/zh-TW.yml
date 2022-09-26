@@ -31,3 +31,8 @@ zh-TW:
     update_task_failed: "任務更新失敗"
     delete_task_confirm: "確認刪除"
     delete_task_succeed: "任務刪除成功"
+
+  order_by_end_time_desc: "依結束日期降冪排序"
+  order_by_end_time_asc: "依結束日期升冪排序"
+  order_by_created_at_desc: "依建立時間降冪排序"
+

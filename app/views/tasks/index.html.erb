@@ -1,11 +1,19 @@
 <h1>所有任務</h1>
-    <% if flash.any? %>
-        <% flash.each do |type, msg| %>
-        <%= msg %><br/>
-        <% end %>
+<% if flash.any? %>
+    <% flash.each do |type, msg| %>
+    <%= msg %><br/>
     <% end %>
-    <%= link_to "新增任務", new_task_path %>
-    <table>
+<% end %>
+<%= link_to "新增任務", new_task_path %>
+</br>
+<div class="dropdown">
+  <p><%= @order_tag %></p>
+  <div class="dropdown-content">
+    <%= link_to  "依#{t("tasks.end_time")}降冪排序", tasks_path(order: "end_time", sort_by: "desc") %>
+    <%= link_to  "依#{t("tasks.end_time")}升冪排序", tasks_path(order: "end_time", sort_by: "asc") %>
+  </div>
+</div>
+<table>
   <thead>
     <tr>
     <td><%= t("tasks.title") %></td>

@@ -2,7 +2,13 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
 
   def index
-    @tasks = Task.all
+    if params[:order].nil?
+      @order_tag = "選擇排序"
+      @tasks = Task.order(created_at: :desc)
+    else
+      @order_tag = t("order_by_#{params[:order]}_#{params[:sort_by]}")
+      @tasks = Task.order("#{params[:order]} #{params[:sort_by].upcase}")
+    end
   end
 
   def new
