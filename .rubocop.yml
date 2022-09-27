@@ -11,3 +11,6 @@ Style/StringLiterals:
 
 Documentation:
   Enabled: false
+
+RSpec/LetSetup:
+  Enabled: true

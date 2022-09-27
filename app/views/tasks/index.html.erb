@@ -7,28 +7,33 @@
 <%= link_to "新增任務", new_task_path %>
 </br>
 <div class="dropdown">
-  <p><%= @order_tag %></p>
+  <p>
+    <% if params[:order].nil? %>
+      選擇排序
+    <% else %>
+      <%= t("order_option." + params[:order] + "_" + params[:sort_by]) %></p>
+    <% end %>
   <div class="dropdown-content" id="order_menu">
-    <%= link_to  "依#{t("tasks.end_time")}降冪排序", tasks_path(order: "end_time", sort_by: "desc"), id: "end_time_desc" %>
-    <%= link_to  "依#{t("tasks.end_time")}升冪排序", tasks_path(order: "end_time", sort_by: "asc"), id: "end_time_asc" %>
+    <%= link_to  t("order_option.end_time_desc"), tasks_path(order: "end_time", sort_by: "desc"), id: "end_time_desc" %>
+    <%= link_to  t("order_option.end_time_asc"), tasks_path(order: "end_time", sort_by: "asc"), id: "end_time_asc" %>
   </div>
 </div>
 <table>
   <thead>
     <tr>
-    <td><%= t("tasks.title") %></td>
-    <td><%= t("tasks.status") %></td>
-    <td><%= t("tasks.priority") %></td>
-    <td><%= t("tasks.start_time") %></td>
-    <td><%= t("tasks.end_time") %></td>
+    <td><%= Task.human_attribute_name :title %></td>
+    <td><%= Task.human_attribute_name :status %></td>
+    <td><%= Task.human_attribute_name :priority %></td>
+    <td><%= Task.human_attribute_name :start_time %></td>
+    <td><%= Task.human_attribute_name :end_time %></td>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
     <tr>
       <td id="title"><%= task.title %></td>
-      <td><%= t("tasks.status_#{task.status}") %></td>
-      <td><%= t("tasks.priority_#{task.priority}") %></td>
+      <td><%= Task.human_attribute_name [:status, task.status].join(".") %></td>
+      <td><%= Task.human_attribute_name [:priority, task.priority].join(".") %></td>
       <td><%= task.start_time %></td>
       <td><%= task.end_time %></td>
       <td>

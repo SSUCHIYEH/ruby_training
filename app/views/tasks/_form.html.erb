@@ -7,22 +7,22 @@
         </ul
     <% end %>
 
-    <%= f.label :title, t("tasks.title") %>
+    <%= f.label :title, Task.human_attribute_name(:title) %>
     <%= f.text_field :title %> <br />
 
-    <%= f.label :status, t("tasks.status") %>
-    <%= f.select :status, options_for_select(Task.statuses.map {|k,v| [t("tasks.status_#{k}"),k]} , @task.status) %>                 
+    <%= f.label :status, Task.human_attribute_name(:status) %>
+    <%= f.select :status, options_for_select(Task.statuses.map {|k,v| [Task.human_attribute_name([:status, k].join('.')),k]} , @task.status) %>                 
     
-    <%= f.label :priority, t("tasks.priority") %>
-    <%= f.select :priority, options_for_select(Task.priorities.map {|k,v| [t("tasks.priority_#{k}"),k]} , @task.priority) %><br />     
+    <%= f.label :priority, Task.human_attribute_name(:priority) %>
+    <%= f.select :priority, options_for_select(Task.priorities.map {|k,v| [Task.human_attribute_name([:priority, k].join('.')),k]} , @task.priority) %><br />     
 
-    <%= f.label :start_time, t("tasks.start_time") %>
+    <%= f.label :start_time, Task.human_attribute_name(:start_time) %>
     <%= f.date_field :start_time, as: :date, value: f.object.try(:strftime,"%Y/%m/%d") %> 
 
-    <%= f.label :end_time, t("tasks.end_time") %>
+    <%= f.label :end_time, Task.human_attribute_name(:end_time) %>
     <%= f.date_field :end_time, as: :date, value: f.object.try(:strftime,"%Y/%m/%d") %> <br />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-    <%= f.label :content, t("tasks.content") %>
+    <%= f.label :content, Task.human_attribute_name(:content) %>
     <%= f.text_area :content %> <br />        
 
     <%= f.submit %>
