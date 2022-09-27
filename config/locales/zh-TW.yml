@@ -15,8 +15,8 @@ zh-TW:
         tag: "標籤"
         content: "內容"
       task/status:
-        notStarted: "待處理"
-        inProgress: "處理中"
+        not_started: "待處理"
+        in_progress: "處理中"
         complete: "已完成"
       task/priority:
         high: "優先"
