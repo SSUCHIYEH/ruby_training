@@ -2,12 +2,11 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
 
   def index
-    
-    @tasks =  if params[:order].nil?
-                Task.order(created_at: :desc)
-              else
-                Task.sort_by_param(*params.slice(:order, :sort_by).values)
-              end
+    @tasks = if params[:order].nil?
+               Task.order(created_at: :desc)
+             else
+               Task.sort_by_param(*params.slice(:order, :sort_by).values)
+             end
   end
 
   def new
