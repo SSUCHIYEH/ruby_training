@@ -12,7 +12,7 @@ RSpec.describe 'Tasks', type: :request do
       content: Faker::Lorem.sentence,
       start_time: Faker::Date.in_date_period(year: 2022, month: 9),
       end_time: Faker::Date.in_date_period(year: 2022, month: 10),
-      status: 'notStarted',
+      status: 'not_started',
       priority: 'high'
     }
   end
@@ -66,7 +66,7 @@ RSpec.describe 'Tasks', type: :request do
         content: Faker::Lorem.sentence,
         start_time: Faker::Date.in_date_period(year: 2022, month: 9),
         end_time: Faker::Date.in_date_period(year: 2022, month: 10),
-        status: 'notStarted',
+        status: 'not_started',
         priority: 'high'
       }
     end
@@ -78,7 +78,7 @@ RSpec.describe 'Tasks', type: :request do
       patch task_path(task), params: { task: new_attributes }
       task.reload
       expect(task.title).to eq('UPDATE')
-      expect(task.status).to eq('notStarted')
+      expect(task.status).to eq('not_started')
     end
   end
 

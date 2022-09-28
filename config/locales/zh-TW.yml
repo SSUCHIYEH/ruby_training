@@ -4,20 +4,24 @@ zh-TW:
   back: "返回"
   create_task: "新增任務"
 
-  tasks:
-    title: "標題"
-    priority: "優先"
-    priority_high: "優先"
-    priority_medium: "不急"
-    priority_low: "還好"
-    status: "狀態"
-    status_notStarted: "待處理"
-    status_inProgress: "處理中"
-    status_complete: "已完成"
-    start_time: "開始日期"
-    end_time: "結束日期"
-    tag: "標籤"
-    content: "內容"
+  activerecord:
+    attributes:
+      task:
+        title: "標題"
+        priority: "優先"
+        status: "狀態"
+        start_time: "開始日期"
+        end_time: "結束日期"
+        tag: "標籤"
+        content: "內容"
+      task/status:
+        not_started: "待處理"
+        in_progress: "處理中"
+        complete: "已完成"
+      task/priority:
+        high: "優先"
+        medium: "不急"
+        low: "還好"
 
   helpers:
     submit:
@@ -31,3 +35,8 @@ zh-TW:
     update_task_failed: "任務更新失敗"
     delete_task_confirm: "確認刪除"
     delete_task_succeed: "任務刪除成功"
+
+  order_option:
+    end_time_desc: "依結束日期降冪排序"
+    end_time_asc: "依結束日期升冪排序"
+
