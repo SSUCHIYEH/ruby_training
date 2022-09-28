@@ -11,11 +11,12 @@
     <% if params[:order].nil? %>
       選擇排序
     <% else %>
-      <%= t("order_option." + params[:order] + "_" + params[:sort_by]) %></p>
+      <%= t("order_option." + params[:order] + "_" + params[:sort_by]) %>
     <% end %>
+  </p>
   <div class="dropdown-content" id="order_menu">
-    <%= link_to  t("order_option.end_time_desc"), tasks_path(order: "end_time", sort_by: "desc"), id: "end_time_desc" %>
-    <%= link_to  t("order_option.end_time_asc"), tasks_path(order: "end_time", sort_by: "asc"), id: "end_time_asc" %>
+    <%= link_to  "依#{Task.human_attribute_name :end_time}降冪排序" , tasks_path(order: "end_time", sort_by: "desc"), id: "end_time_desc" %>
+    <%= link_to  "依#{Task.human_attribute_name :end_time}升冪排序", tasks_path(order: "end_time", sort_by: "asc"), id: "end_time_asc" %>
   </div>
 </div>
 <table>

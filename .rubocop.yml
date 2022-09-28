@@ -14,3 +14,6 @@ Documentation:
 
 RSpec/LetSetup:
   Enabled: true
+
+Style/Lambda:
+  EnforcedStyle: literal
