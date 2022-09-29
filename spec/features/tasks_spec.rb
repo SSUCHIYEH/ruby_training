@@ -32,4 +32,50 @@ RSpec.describe 'Tasks management', type: :feature do
       end
     end
   end
+
+  describe 'search_by' do
+    let!(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") } # rubocop:disable RSpec/LetSetup
+    let!(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") } # rubocop:disable RSpec/LetSetup
+
+    before do
+      visit "/tasks"
+    end
+
+    content "title" do
+      it do
+        within("#search") do
+          fill_in "title", with: "not_started"
+        end
+        click_button I18n.t("search")
+
+        expect(find("tbody")).not_to have_content("complete")
+        expect(find("tbody")).to have_content("not_started")
+      end
+    end
+    content "status" do
+      it "status" do
+        within("#search") do
+          select(Task.human_attribute_name("status.complete"), from: "status")
+        end
+        click_button I18n.t("search")
+
+        expect(find("tbody")).not_to have_content(Task.human_attribute_name("status.not_started"))
+        expect(find("tbody")).to have_content(Task.human_attribute_name("status.complete"))
+      end
+    end
+
+    content "title and status" do
+      within("#search") do
+        fill_in "title", with: "complete"
+        select(Task.human_attribute_name("status.complete"), from: "status")
+      end
+      click_button I18n.t("search")
+      it do
+        expect(find("tbody")).not_to have_content("not_started")
+        expect(find("tbody")).not_to have_content(Task.human_attribute_name("status.not_started"))
+        expect(find("tbody")).to have_content("complete")
+        expect(find("tbody")).to have_content(Task.human_attribute_name("status.complete"))
+      end
+    end
+  end
 end

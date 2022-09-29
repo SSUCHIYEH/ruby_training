@@ -12,10 +12,10 @@ class Task < ApplicationRecord
   scope :search_by_param, ->(title = nil, status = nil) do
     if title.blank? && status.blank?
       all
-    elsif title.blank? && !status.blank?
+    elsif title.blank? && status.present?
       # puts title
       where("status = ?", status)
-    elsif !title.blank? && status.blank?
+    elsif title.present? && status.blank?
       # puts title
       where("title ~* ?", title)
     else
