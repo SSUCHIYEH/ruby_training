@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
 
   def index
-    @tasks = Task.sort_by_param(*params.slice(:order, :sort_by).values)
+    @sort = Task.sort_by_param(*params.slice(:order, :sort_by).values)
+    @tasks = @sort.search_by_param(*params.slice(:title, :status).values)
   end
 
   def new

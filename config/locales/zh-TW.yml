@@ -2,6 +2,9 @@ zh-TW:
   edit: "編輯"
   delete: "刪除"
   back: "返回"
+  search: "搜尋"
+  search_status: "搜尋狀態"
+  search_title: "搜尋標題"
   create_task: "新增任務"
 
   activerecord:

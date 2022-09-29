@@ -19,6 +19,11 @@
     <%= link_to  "依#{Task.human_attribute_name :end_time}升冪排序", tasks_path(order: "end_time", sort_by: "asc"), id: "end_time_asc" %>
   </div>
 </div>
+<%= form_tag tasks_path, method: :get, id:"search" do %>
+  <%= text_field_tag :title, params[:title], placeholder: t("search_title") ,id:"title"%>
+  <%= select_tag :status, options_for_select(Task.statuses.map {|k,v| [Task.human_attribute_name([:status, k].join('.')),v]}, params[:status]), :prompt => t("search_status"), id:"status" %>
+  <%= submit_tag t("search"), name: nil %>
+<% end %>
 <table>
   <thead>
     <tr>

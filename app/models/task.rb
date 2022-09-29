@@ -8,6 +8,21 @@ class Task < ApplicationRecord
       order(created_at: :desc)
     end
   end
+
+  scope :search_by_param, ->(title = nil, status = nil) do
+    if title.blank? && status.blank?
+      all
+    elsif title.blank? && !status.blank?
+      # puts title
+      where("status = ?", status)
+    elsif !title.blank? && status.blank?
+      # puts title
+      where("title ~* ?", title)
+    else
+      where("title ~* ?", title).where("status = ?", status)
+    end
+  end
+
   enum status: { not_started: 0, in_progress: 1, complete: 2 }
   enum priority: { high: 0, medium: 1, low: 2 }
   validates :end_time, comparison: { greater_than_or_equal_to: :start_time }
