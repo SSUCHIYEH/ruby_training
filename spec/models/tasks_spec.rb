@@ -26,4 +26,30 @@ RSpec.describe Task, type: :model do
       end
     end
   end
+
+  describe '.search_by_param' do
+    let!(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") }
+    let!(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") }
+
+    context "with title" do
+      subject { described_class.search_by_param("not_started", "") }
+
+      it { is_expected.not_to match_array(complete_tasks) }
+      it { is_expected.to match_array(not_started_tasks) }
+    end
+
+    context "with status" do
+      subject { described_class.search_by_param("", "2") }
+
+      it { is_expected.not_to match_array(not_started_tasks) }
+      it { is_expected.to match_array(complete_tasks) }
+    end
+
+    context "with title and status" do
+      subject { described_class.search_by_param("complete", "2") }
+
+      it { is_expected.not_to match_array(not_started_tasks) }
+      it { is_expected.to match_array(complete_tasks) }
+    end
+  end
 end

@@ -21,5 +21,9 @@ FactoryBot.define do
       start_time { Faker::Date.in_date_period(year: 2023, month: 9) }
       end_time { Faker::Date.in_date_period(year: 2023, month: 10) }
     end
+
+    trait :complete do
+      status { 'complete' }
+    end
   end
 end

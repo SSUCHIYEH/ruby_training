@@ -12,8 +12,5 @@ Style/StringLiterals:
 Documentation:
   Enabled: false
 
-RSpec/LetSetup:
-  Enabled: true
-
 Style/Lambda:
   EnforcedStyle: literal

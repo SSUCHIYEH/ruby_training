@@ -11,10 +11,10 @@
     <%= f.text_field :title %> <br />
 
     <%= f.label :status %>
-    <%= f.select :status, options_for_select(Task.statuses.map {|k,v| [Task.human_attribute_name([:status, k].join('.')),k]} , @task.status) %>                 
+    <%= f.select :status, options_for_select(status_key_options , @task.status) %>                 
     
     <%= f.label :priority %>
-    <%= f.select :priority, options_for_select(Task.priorities.map {|k,v| [Task.human_attribute_name([:priority, k].join('.')),k]} , @task.priority) %><br />     
+    <%= f.select :priority, options_for_select(priority_key_options , @task.priority) %><br />     
 
     <%= f.label :start_time %>
     <%= f.date_field :start_time, as: :date %> 
