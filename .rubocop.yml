@@ -17,3 +17,6 @@ RSpec/LetSetup:
 
 Style/Lambda:
   EnforcedStyle: literal
+
+RSpec/ExampleLength:
+  Enabled: false

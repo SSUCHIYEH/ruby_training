@@ -28,8 +28,8 @@ RSpec.describe Task, type: :model do
   end
 
   describe '.search_by_param' do
-    let(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") }
-    let(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") }
+    let!(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") }
+    let!(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") }
 
     context "find title"
     it do
