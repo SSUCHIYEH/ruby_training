@@ -25,4 +25,5 @@ class Task < ApplicationRecord
   enum priority: { low: 0, medium: 1, high: 2 }
   validates :end_time, comparison: { greater_than_or_equal_to: :start_time }
   validates :title, presence: true, allow_blank: false
+  paginates_per 10
 end

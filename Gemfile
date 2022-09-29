@@ -44,6 +44,8 @@ gem 'pg', '~> 1.4', '>= 1.4.3'
 
 gem 'rails-i18n'
 
+gem 'kaminari'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
