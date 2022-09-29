@@ -3,11 +3,9 @@ require 'factories/task'
 
 RSpec.describe 'Tasks management', type: :feature do
   describe 'order_by' do
-    let!(:tasks) do # rubocop:disable RSpec/LetSetup
-      [create(:task, :next_year, title: "INIT"), create(:task, :init, title: "NEW")]
-    end
-
     before do
+      create(:task, :next_year, title: "INIT")
+      create(:task, :init, title: "NEW")
       visit "/tasks"
     end
 
@@ -34,14 +32,14 @@ RSpec.describe 'Tasks management', type: :feature do
   end
 
   describe 'search' do
-    let!(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") } # rubocop:disable RSpec/LetSetup
-    let!(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") } # rubocop:disable RSpec/LetSetup
-    let(:zh_not_started) { Task.human_attribute_name("status.not_started") }
-    let(:zh_complete) { Task.human_attribute_name("status.complete") }
-
     before do
+      generate_not_started_tasks
+      generate_complete_tasks
       visit "/tasks"
     end
+
+    let(:zh_not_started) { Task.human_attribute_name("status.not_started") }
+    let(:zh_complete) { Task.human_attribute_name("status.complete") }
 
     context "with title" do
       it do
@@ -69,14 +67,26 @@ RSpec.describe 'Tasks management', type: :feature do
 
     context "with title and status" do
       it do
-        within("#search") do
-          fill_in "title", with: "complete"
-          select(zh_complete, from: "status")
-        end
+        search_complete_by_title_status
         click_button I18n.t("search")
         expect(find("tbody")).to have_content("complete")
         expect(find("tbody")).to have_content(zh_complete)
       end
+    end
+  end
+
+  def generate_not_started_tasks
+    create_list(:task, 3, :init, title: "not_started")
+  end
+
+  def generate_complete_tasks
+    create_list(:task, 3, :init, :complete, title: "complete")
+  end
+
+  def search_complete_by_title_status
+    within("#search") do
+      fill_in "title", with: "complete"
+      select(zh_complete, from: "status")
     end
   end
 end
