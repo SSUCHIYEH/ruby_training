@@ -36,6 +36,8 @@ RSpec.describe 'Tasks management', type: :feature do
   describe 'search' do
     let!(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") } # rubocop:disable RSpec/LetSetup
     let!(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") } # rubocop:disable RSpec/LetSetup
+    let(:zh_not_started) { Task.human_attribute_name("status.not_started") }
+    let(:zh_complete) { Task.human_attribute_name("status.complete") }
 
     before do
       visit "/tasks"
@@ -56,12 +58,12 @@ RSpec.describe 'Tasks management', type: :feature do
     context "with status" do
       it do
         within("#search") do
-          select(Task.human_attribute_name("status.complete"), from: "status")
+          select(zh_complete, from: "status")
         end
         click_button I18n.t("search")
 
-        expect(find("tbody")).not_to have_content(Task.human_attribute_name("status.not_started"))
-        expect(find("tbody")).to have_content(Task.human_attribute_name("status.complete"))
+        expect(find("tbody")).not_to have_content(zh_not_started)
+        expect(find("tbody")).to have_content(zh_complete)
       end
     end
 
@@ -69,11 +71,11 @@ RSpec.describe 'Tasks management', type: :feature do
       it do
         within("#search") do
           fill_in "title", with: "complete"
-          select(Task.human_attribute_name("status.complete"), from: "status")
+          select(zh_complete, from: "status")
         end
         click_button I18n.t("search")
         expect(find("tbody")).to have_content("complete")
-        expect(find("tbody")).to have_content(Task.human_attribute_name("status.complete"))
+        expect(find("tbody")).to have_content(zh_complete)
       end
     end
   end

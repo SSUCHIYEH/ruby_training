@@ -13,10 +13,8 @@ class Task < ApplicationRecord
     if title.blank? && status.blank?
       all
     elsif title.blank? && status.present?
-      # puts title
       where("status = ?", status)
     elsif title.present? && status.blank?
-      # puts title
       where("title ~* ?", title)
     else
       where("title ~* ?", title).where("status = ?", status)
