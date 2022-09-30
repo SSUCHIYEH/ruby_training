@@ -14,35 +14,39 @@ RSpec.describe 'Tasks management', type: :feature do
     let(:zh_high) { Task.human_attribute_name("priority.high") }
     let(:zh_low) { Task.human_attribute_name("priority.low") }
 
-    context "when default" do
-      it "by create_at desc" do
+    context "when default order by create_at desc" do
+      it do
         expect(find("#{first_tr}#title")).to have_content("this_year")
         expect(find("#{second_tr}#title")).to have_content("next_year")
       end
     end
 
-    context "with end_time" do
-      it "desc" do
+    context "when order by end_time desc" do
+      it do
         order_by("end_time", "desc")
         expect(find("#{first_tr}#title")).to have_content("next_year")
         expect(find("#{second_tr}#title")).to have_content("this_year")
       end
+    end
 
-      it "asc" do
+    context "when order by end_time asc" do
+      it do
         order_by("end_time", "asc")
         expect(find("#{first_tr}#title")).to have_content("this_year")
         expect(find("#{second_tr}#title")).to have_content("next_year")
       end
     end
 
-    context "with priority" do
-      it "desc" do
+    context "when order by priority desc" do
+      it do
         order_by("priority", "desc")
         expect(find("#{first_tr}#priority")).to have_content(zh_high)
         expect(find("#{second_tr}#priority")).to have_content(zh_low)
       end
+    end
 
-      it "asc" do
+    context "when order by priority asc" do
+      it do
         order_by("priority", "asc")
         expect(find("#{first_tr}#priority")).to have_content(zh_low)
         expect(find("#{second_tr}#priority")).to have_content(zh_high)
@@ -67,7 +71,7 @@ RSpec.describe 'Tasks management', type: :feature do
     let(:zh_not_started) { Task.human_attribute_name("status.not_started") }
     let(:zh_complete) { Task.human_attribute_name("status.complete") }
 
-    context "with title" do
+    context "when search by title" do
       it do
         within("#search") do
           fill_in "title", with: "not_started"
@@ -79,7 +83,7 @@ RSpec.describe 'Tasks management', type: :feature do
       end
     end
 
-    context "with status" do
+    context "when search by status" do
       it do
         within("#search") do
           select(zh_complete, from: "status")
@@ -91,7 +95,7 @@ RSpec.describe 'Tasks management', type: :feature do
       end
     end
 
-    context "with title and status" do
+    context "when search by title and status" do
       it do
         search_complete_by_title_status
         click_button I18n.t("search")
