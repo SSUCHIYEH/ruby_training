@@ -2,32 +2,62 @@ require 'rails_helper'
 require 'factories/task'
 
 RSpec.describe 'Tasks management', type: :feature do
-  describe 'order_by' do
+  describe 'order' do
     before do
-      create(:task, :next_year, title: "INIT")
-      create(:task, :init, title: "NEW")
+      create(:task, :init, :low, :next_year, title: "next_year")
+      create(:task, :init, :high, title: "this_year")
       visit "/tasks"
     end
 
-    context "when default" do
-      it "by create_at desc" do
-        expect(find("tbody tr:nth-child(1) #title")).to have_content("NEW")
-        expect(find("tbody tr:nth-child(2) #title")).to have_content("INIT")
+    let(:first_tr) { "tbody tr:nth-child(1) " }
+    let(:second_tr) { "tbody tr:nth-child(2) " }
+    let(:zh_high) { Task.human_attribute_name("priority.high") }
+    let(:zh_low) { Task.human_attribute_name("priority.low") }
+
+    context "when default order by create_at desc" do
+      it do
+        expect(find("#{first_tr}#title")).to have_content("this_year")
+        expect(find("#{second_tr}#title")).to have_content("next_year")
       end
     end
 
-    context "when click end_time" do
-      it "end_time_desc" do
-        find("#order_menu #end_time_desc").click
-        expect(find("tbody tr:nth-child(1) #title")).to have_content("INIT")
-        expect(find("tbody tr:nth-child(2) #title")).to have_content("NEW")
+    context "when order by end_time desc" do
+      it do
+        order_by("end_time", "desc")
+        expect(find("#{first_tr}#title")).to have_content("next_year")
+        expect(find("#{second_tr}#title")).to have_content("this_year")
       end
+    end
 
-      it "end_time_asc" do
-        find("#order_menu #end_time_asc").click
-        expect(find("tbody tr:nth-child(1) #title")).to have_content("NEW")
-        expect(find("tbody tr:nth-child(2) #title")).to have_content("INIT")
+    context "when order by end_time asc" do
+      it do
+        order_by("end_time", "asc")
+        expect(find("#{first_tr}#title")).to have_content("this_year")
+        expect(find("#{second_tr}#title")).to have_content("next_year")
       end
+    end
+
+    context "when order by priority desc" do
+      it do
+        order_by("priority", "desc")
+        expect(find("#{first_tr}#priority")).to have_content(zh_high)
+        expect(find("#{second_tr}#priority")).to have_content(zh_low)
+      end
+    end
+
+    context "when order by priority asc" do
+      it do
+        order_by("priority", "asc")
+        expect(find("#{first_tr}#priority")).to have_content(zh_low)
+        expect(find("#{second_tr}#priority")).to have_content(zh_high)
+      end
+    end
+
+    def order_by(attr, sort)
+      within("#search") do
+        select(I18n.t("order_options.#{attr}_#{sort}"), from: "order")
+      end
+      click_button I18n.t("search")
     end
   end
 
@@ -41,7 +71,7 @@ RSpec.describe 'Tasks management', type: :feature do
     let(:zh_not_started) { Task.human_attribute_name("status.not_started") }
     let(:zh_complete) { Task.human_attribute_name("status.complete") }
 
-    context "with title" do
+    context "when search by title" do
       it do
         within("#search") do
           fill_in "title", with: "not_started"
@@ -53,7 +83,7 @@ RSpec.describe 'Tasks management', type: :feature do
       end
     end
 
-    context "with status" do
+    context "when search by status" do
       it do
         within("#search") do
           select(zh_complete, from: "status")
@@ -65,7 +95,7 @@ RSpec.describe 'Tasks management', type: :feature do
       end
     end
 
-    context "with title and status" do
+    context "when search by title and status" do
       it do
         search_complete_by_title_status
         click_button I18n.t("search")

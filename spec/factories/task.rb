@@ -4,8 +4,6 @@ FactoryBot.define do
     content { Faker::Lorem.sentence }
     start_time { Faker::Date.in_date_period(year: 2022, month: 9) }
     end_time { Faker::Date.in_date_period(year: 2022, month: 10) }
-    status { 'not_started' }
-    priority { 'high' }
 
     trait :init do
       status { 'not_started' }
@@ -24,6 +22,14 @@ FactoryBot.define do
 
     trait :complete do
       status { 'complete' }
+    end
+
+    trait :high do
+      priority { 'high' }
+    end
+
+    trait :low do
+      priority { 'low' }
     end
   end
 end

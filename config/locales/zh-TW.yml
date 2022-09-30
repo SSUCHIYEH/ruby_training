@@ -6,6 +6,7 @@ zh-TW:
   search_status: "搜尋狀態"
   search_title: "搜尋標題"
   create_task: "新增任務"
+  order_by: "排序依據"
 
   activerecord:
     attributes:
@@ -39,7 +40,9 @@ zh-TW:
     delete_task_confirm: "確認刪除"
     delete_task_succeed: "任務刪除成功"
 
-  order_option:
+  order_options:
     end_time_desc: "依結束日期降冪排序"
     end_time_asc: "依結束日期升冪排序"
+    priority_desc: "依優先降冪排序"
+    priority_asc: "依優先升冪排序"
 
