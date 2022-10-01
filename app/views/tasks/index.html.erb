@@ -1,11 +1,11 @@
 <div class="flex content-center justify-between">
   <%= form_tag tasks_path, method: :get, id:"search" do %>
-    <%= text_field_tag :title, params[:title], placeholder: t("search_title"), id:"title", class:"border-[#dcdcdc]" %>
+    <%= text_field_tag :title, params[:title], placeholder: t("search_title"), id:"title", class:"border-gray-50" %>
     <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t("search_status") %>
     <%= select_tag :order, options_for_select(order_options, params[:order]), prompt: t("order_by")  %>
     <%= submit_tag t("search"), name: nil %>
   <% end %>
-  <%= link_to "新增任務", new_task_path, class: "text-white bg-[#d55555] p-2 px-8 rounded-full" %>
+  <%= link_to "新增任務", new_task_path, class: "text-white bg-light_red p-2 px-8 rounded-full" %>
 </div>
 <% if flash.any? %>
     <% flash.each do |type, msg| %>
