@@ -1,5 +1,11 @@
-<h1>新增任務</h1>
-
-<%= render "form", task: @task %><br/>
-
-<%= link_to t("back"), tasks_path %>
+<div class="flex items-center">
+  <%= link_to tasks_path do %>
+      <%= image_tag "/images/right-arrow.png", class: "w-4 h-4" %>
+  <% end %>
+  <h1 class="ml-4">
+    <%= t("new_task") %>
+  </h1>
+</div>
+<div class="w-full flex">
+  <%= render "form", task: @task %>
+</div>

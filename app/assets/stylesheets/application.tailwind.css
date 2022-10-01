@@ -2,12 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+thead {
+  background-color: white;
+  margin-bottom: 0.5rem;
+}
+thead tr td {
+  padding: 1.5rem;
 }
 
-*/
+table {
+  border-collapse: separate;
+  border-spacing: 0px 1rem;
+}
+
+tbody tr td {
+  background-color: white;
+  padding: 1rem 1.5rem;
+}
+
+.form select, .form input, .form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  color: #7d7f85;
+  border-color: #dcdcdc;
+  border-radius: 0.25rem;
+}
+
+select, input, textarea {
+  color: #7d7f85;
+  border-color: #dcdcdc;
+  border-radius: 0.25rem;
+}
+
+form input {
+  color: #7d7f85;
+  border-color: #dcdcdc;
+  border-radius: 0.25rem;
+}
+
+.form input[type="submit"] {
+  margin-top: 2rem;
+  padding: 0.5rem 2rem;
+  background-color: #d55555;
+  border-radius: 0.25rem;
+  color: white;
+  width: 10rem;
+}

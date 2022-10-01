@@ -1,5 +1,6 @@
 zh-TW:
-  edit: "編輯"
+  edit_task: "編輯任務"
+  new_task: "新增任務"
   delete: "刪除"
   back: "返回"
   search: "搜尋"
@@ -29,8 +30,8 @@ zh-TW:
 
   helpers:
     submit:
-      create: "新增任務"
-      update: "更新任務"
+      create: "新增"
+      update: "更新"
 
   message:
     create_task_succeed: "任務新增成功"
