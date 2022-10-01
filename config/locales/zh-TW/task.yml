@@ -1,12 +1,7 @@
 zh-TW:
-  edit: "編輯"
-  delete: "刪除"
-  back: "返回"
-  search: "搜尋"
-  search_status: "搜尋狀態"
-  search_title: "搜尋標題"
+  edit_task: "編輯任務"
+  new_task: "新增任務"
   create_task: "新增任務"
-  order_by: "排序依據"
 
   activerecord:
     attributes:
@@ -27,11 +22,6 @@ zh-TW:
         medium: "不急"
         low: "還好"
 
-  helpers:
-    submit:
-      create: "新增任務"
-      update: "更新任務"
-
   message:
     create_task_succeed: "任務新增成功"
     create_task_failed: "任務新增失敗"
@@ -45,10 +35,3 @@ zh-TW:
     end_time_asc: "依結束日期升冪排序"
     priority_desc: "依優先降冪排序"
     priority_asc: "依優先升冪排序"
-
-  views:
-    pagination:
-      first: "第一頁"
-      last: "末頁"
-      previous: "前一頁"
-      next: "下一頁"

@@ -46,6 +46,8 @@ gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
 
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
+gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.14'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
