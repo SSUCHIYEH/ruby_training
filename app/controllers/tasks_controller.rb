@@ -2,13 +2,8 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
 
   def index
-    @tasks = Task.search_by_param(*params.slice(:title, :status).values)
-    if params[:order].present?
-      order_by = params[:order].split(' ')
-      @tasks = @tasks.sort_by_param(order_by[0], order_by[1]).page(params[:page])
-    else
-      @tasks = @tasks.sort_by_param.page(params[:page])
-    end
+    sort_by_param
+    @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
   end
 
   def new
@@ -50,5 +45,14 @@ class TasksController < ApplicationController
 
   def find_task
     @task = Task.find_by(id: params[:id])
+  end
+
+  def sort_by_param
+    if params[:order].present?
+      order_by = params[:order].split(' ')
+      @sort_result = Task.sort_by_param(order_by[0], order_by[1])
+    else
+      @sort_result = Task.sort_by_param
+    end
   end
 end
