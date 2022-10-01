@@ -42,9 +42,9 @@ gem 'bootsnap', require: false
 
 gem 'pg', '~> 1.4', '>= 1.4.3'
 
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 7.0', '>= 7.0.5'
 
-gem 'kaminari'
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
