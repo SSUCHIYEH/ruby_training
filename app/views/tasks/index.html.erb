@@ -5,7 +5,7 @@
     <%= select_tag :order, options_for_select(order_options, params[:order]), prompt: t("order_by")  %>
     <%= submit_tag t("search"), name: nil %>
   <% end %>
-  <%= link_to "新增任務", new_task_path, class: "text-white bg-light_red p-2 px-8 rounded-full" %>
+  <%= link_to t("new_task"), new_task_path, class: "text-white bg-red-400 p-2 px-8 rounded-full" %>
 </div>
 <% if flash.any? %>
     <% flash.each do |type, msg| %>
@@ -19,9 +19,7 @@
       <td><%= Task.human_attribute_name :status %></td>
       <td><%= Task.human_attribute_name :priority %></td>
       <td><%= Task.human_attribute_name :start_time %></td>
-      <td><%= Task.human_attribute_name :end_time %></td>
-      <td></td>
-      <td></td>
+      <td colspan="3"><%= Task.human_attribute_name :end_time %></td>
     </tr>
   </thead>
   <tbody>

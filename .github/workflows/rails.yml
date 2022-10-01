@@ -30,6 +30,7 @@ jobs:
       - name: Set up database schema
         run: bin/rails db:schema:load
       # Add or replace test runners here
+        run: bundle exec rails assets:precompile
       - name: Run tests
         run: bundle exec rspec spec
   
