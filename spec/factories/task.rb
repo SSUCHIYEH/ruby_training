@@ -4,6 +4,7 @@ FactoryBot.define do
     content { Faker::Lorem.sentence }
     start_time { Faker::Date.in_date_period(year: 2022, month: 9) }
     end_time { Faker::Date.in_date_period(year: 2022, month: 10) }
+    association :user
 
     trait :init do
       status { 'not_started' }

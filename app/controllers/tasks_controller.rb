@@ -11,7 +11,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    new_task = {
+      user_id: 6
+    }
+    new_task.merge!(task_params)
+    @task = Task.new(new_task)
 
     if @task.save
       redirect_to tasks_path, notice: t("message.create_task_succeed")
