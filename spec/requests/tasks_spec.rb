@@ -2,10 +2,12 @@
 
 require 'rails_helper'
 require 'factories/task'
+require 'factories/user'
 require 'faker'
 
 RSpec.describe 'Tasks', type: :request do
-  let!(:task) { create(:task, :init, title: 'TEST') }
+  let!(:user) { create(:user, :first) }
+  let!(:task) { create(:task, :init, title: 'TEST', user: user) }
   let(:valid_attributes) do
     {
       title: Faker::Hobby.activity,

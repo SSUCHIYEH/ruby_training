@@ -15,7 +15,4 @@ if Task.all.empty?
   FactoryBot.create_list(:task, 4, :complete)
 end
 
-if User.all.empty?
-  FactoryBot.create(:user, :first)
-end
-
+FactoryBot.create(:user, :first) if User.all.empty?

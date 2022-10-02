@@ -1,9 +1,15 @@
 require 'rails_helper'
 require 'factories/task'
+require 'factories/user'
 require 'faker'
 
 RSpec.describe Task, type: :model do
+  let(:user) { build(:user, :first) }
   let(:task) { build(:task, :init) }
+
+  describe 'Association' do
+    it { is_expected.to belong_to(:user) }
+  end
 
   describe 'Validation' do
     subject(:valid) { task.valid? }
