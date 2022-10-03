@@ -1,11 +1,10 @@
 require 'rails_helper'
-require 'factories/task'
 
 RSpec.describe 'Tasks management', type: :feature do
   describe 'order' do
     before do
-      create(:task, :init, :low, :next_year, title: "next_year")
-      create(:task, :init, :high, title: "this_year")
+      create(:task, :low, :next_year, title: "next_year")
+      create(:task, :high, title: "this_year")
       visit "/tasks"
     end
 
@@ -106,11 +105,11 @@ RSpec.describe 'Tasks management', type: :feature do
   end
 
   def generate_not_started_tasks
-    create_list(:task, 3, :init, title: "not_started")
+    create_list(:task, 3, title: "not_started")
   end
 
   def generate_complete_tasks
-    create_list(:task, 3, :init, :complete, title: "complete")
+    create_list(:task, 3, :complete, title: "complete")
   end
 
   def search_complete_by_title_status

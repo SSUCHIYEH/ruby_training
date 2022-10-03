@@ -7,7 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'factory_bot'
 require './spec/factories/task'
+require './spec/factories/user'
 
-FactoryBot.create_list(:task, 4, :init)
-FactoryBot.create_list(:task, 4, :init, :important)
-FactoryBot.create_list(:task, 4, :complete)
+if Task.all.empty?
+  FactoryBot.create_list(:task, 4)
+  FactoryBot.create_list(:task, 4, :important)
+  FactoryBot.create_list(:task, 4, :complete)
+end
+
+FactoryBot.create(:user, :first) if User.all.empty?

@@ -63,7 +63,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rails', require: false
-  gem 'factory_bot', '~> 6.2', '>= 6.2.1'
+  gem 'factory_bot_rails', '~> 6.2'
   gem 'faker'
   gem 'byebug'
 end
@@ -84,4 +84,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'shoulda-matchers', '~> 5.0'
 end

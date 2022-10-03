@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   # belongs_to :tag
   scope :sort_by_param, ->(order = nil, sort_by = nil) do
     if order && sort_by

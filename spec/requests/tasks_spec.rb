@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'factories/task'
 require 'faker'
 
 RSpec.describe 'Tasks', type: :request do
-  let!(:task) { create(:task, :init, title: 'TEST') }
+  let!(:user) { create(:user, :first) }
+  let!(:task) { create(:task, title: 'TEST', user: user) }
   let(:valid_attributes) do
     {
       title: Faker::Hobby.activity,
@@ -13,7 +13,8 @@ RSpec.describe 'Tasks', type: :request do
       start_time: Faker::Date.in_date_period(year: 2022, month: 9),
       end_time: Faker::Date.in_date_period(year: 2022, month: 10),
       status: 'not_started',
-      priority: 'high'
+      priority: 'high',
+      user_id: user.id
     }
   end
 
