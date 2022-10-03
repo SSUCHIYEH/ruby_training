@@ -4,8 +4,11 @@ require 'factories/user'
 require 'faker'
 
 RSpec.describe Task, type: :model do
-  let(:user) { build(:user, :first) }
-  let(:task) { build(:task, :init) }
+  before do
+    build(:user)
+  end
+
+  let(:task) { build(:task) }
 
   describe 'Association' do
     it { is_expected.to belong_to(:user) }
@@ -34,8 +37,8 @@ RSpec.describe Task, type: :model do
   end
 
   describe '.search_by_param' do
-    let!(:not_started_tasks) { create_list(:task, 3, :init, title: "not_started") }
-    let!(:complete_tasks) { create_list(:task, 3, :init, :complete, title: "complete") }
+    let!(:not_started_tasks) { create_list(:task, 3, title: "not_started") }
+    let!(:complete_tasks) { create_list(:task, 3, :complete, title: "complete") }
 
     context "with title" do
       subject { described_class.search_by_param("not_started", "") }

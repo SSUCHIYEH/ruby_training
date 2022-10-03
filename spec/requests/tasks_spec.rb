@@ -7,7 +7,7 @@ require 'faker'
 
 RSpec.describe 'Tasks', type: :request do
   let!(:user) { create(:user, :first) }
-  let!(:task) { create(:task, :init, title: 'TEST', user: user) }
+  let!(:task) { create(:task, title: 'TEST', user: user) }
   let(:valid_attributes) do
     {
       title: Faker::Hobby.activity,
