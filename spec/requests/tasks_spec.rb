@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'factories/task'
-require 'factories/user'
 require 'faker'
 
 RSpec.describe 'Tasks', type: :request do

@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'factories/task'
-require 'factories/user'
 require 'faker'
 
 RSpec.describe Task, type: :model do

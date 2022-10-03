@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'factories/task'
 
 RSpec.describe 'Tasks management', type: :feature do
   describe 'order' do
