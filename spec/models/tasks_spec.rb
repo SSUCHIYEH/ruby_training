@@ -2,18 +2,16 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe Task, type: :model do
-  before do
-    build(:user)
-  end
-
-  let(:task) { build(:task) }
-
   describe 'Association' do
+    let(:user) { build(:user) }
+
     it { is_expected.to belong_to(:user) }
   end
 
   describe 'Validation' do
     subject(:valid) { task.valid? }
+
+    let(:task) { build(:task) }
 
     # 資料齊全通過驗證
     it { is_expected.to be_truthy }
