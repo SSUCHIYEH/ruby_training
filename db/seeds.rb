@@ -16,11 +16,3 @@ if Task.all.empty?
 end
 
 FactoryBot.create(:user, :first) if User.all.empty?
-
-if !Task.where.missing(:user).empty?
-  @user = User.all.first 
-  @tasks = Task.where.missing(:user)
-  @tasks.each do |task|
-    task.update_attribute(:user_id, @user.id)
-  end
-end

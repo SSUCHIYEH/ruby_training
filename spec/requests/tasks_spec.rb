@@ -15,7 +15,8 @@ RSpec.describe 'Tasks', type: :request do
       start_time: Faker::Date.in_date_period(year: 2022, month: 9),
       end_time: Faker::Date.in_date_period(year: 2022, month: 10),
       status: 'not_started',
-      priority: 'high'
+      priority: 'high',
+      user_id: user.id
     }
   end
 
