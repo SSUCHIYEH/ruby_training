@@ -3,8 +3,6 @@ require 'faker'
 
 RSpec.describe Task, type: :model do
   describe 'Association' do
-    let(:user) { build(:user) }
-
     it { is_expected.to belong_to(:user) }
   end
 
