@@ -1,0 +1,11 @@
+zh-TW:
+  new_user: '註冊新用戶'
+
+  activerecord:
+    attributes:
+      user:
+        name: "名稱"
+        password: "密碼"
+        role: "身份"
+  message:
+    input_error: "輸入錯誤"

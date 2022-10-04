@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center">
+  <h1 class="text-red-400 text-4xl">Todo app</h1>
+
+  <%= form_tag '/login', class: "form" do %>
+      <%= text_field_tag :name, params[:name], placeholder: User.human_attribute_name("name"), class: "w-2/4" %>
+      <%= password_field_tag :password, params[:password], placeholder: User.human_attribute_name("password"), class: "w-2/4" %>
+      <%= submit_tag t('login'), class:'mx-auto' %>
+  <% end %>
+  <%= link_to t('new_user'), sign_up_path %>
+</div>

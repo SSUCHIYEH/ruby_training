@@ -5,6 +5,7 @@ zh-TW:
   search_status: "搜尋狀態"
   search_title: "搜尋標題"
   order_by: "排序依據"
+  login: '登入'
   
   tab:
     my_task: "我的任務"

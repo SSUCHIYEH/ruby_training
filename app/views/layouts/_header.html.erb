@@ -1,3 +1,12 @@
-<div class="bg-red-400 p-5 flex w-screen">
-  <span class="text-white text-4xl" >Todo APP</span>
+<div class="bg-red-400 p-5 flex w-screen justify-between text-white">
+  <div class="text-white text-4xl" >Todo APP</div>
+  <div class="flex">
+  <% if loggin_in? %>
+    <p>
+      Hi, 
+      <%= current_user.name %>
+    </p>
+    <%= button_to "登出", logout_path, method: :delete %>  
+  <% end %>
+  </div>
 </div>
