@@ -12,9 +12,9 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to tasks_path, notice: '帳號註冊成功'
+      redirect_to tasks_path, notice: t('messege.signup_succeed')
     else
-      render :new
+      render :new, notice: t('messege.input_error')
     end
   end
 

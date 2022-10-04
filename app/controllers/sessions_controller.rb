@@ -6,15 +6,15 @@ class SessionsController < ApplicationController
   def create
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: t("message.signin_succeed")
     else
-      redirect_to root_path, notice: t('input_error')
+      redirect_to login_path, notice: t("message.input_error")
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: '已登出'
+    redirect_to login_path, notice: t('message.signout_succeed')
   end
 
   private

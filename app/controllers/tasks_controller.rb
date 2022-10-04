@@ -2,9 +2,13 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
 
   def index
-    @user_tasks = Task.includes(:user).where("user_id =?", session[:user_id])
-    @sort_result = sort_by_param
-    @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
+    if session[:user_id]
+      @user_tasks = Task.includes(:user).where("user_id =?", session[:user_id])
+      @sort_result = sort_by_param
+      @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
+    else
+      redirect_to login_path
+    end
   end
 
   def new

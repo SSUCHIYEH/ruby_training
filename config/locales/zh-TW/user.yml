@@ -7,5 +7,9 @@ zh-TW:
         name: "名稱"
         password: "密碼"
         role: "身份"
+
   message:
     input_error: "輸入錯誤"
+    signout_succeed: '成功登出'
+    signup_succeed: '成功註冊'
+    signin_succeed: '成功登入'
