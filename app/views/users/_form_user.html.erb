@@ -1,5 +1,11 @@
 <%= form_with model: @user,local: true , data: { turbo: false }, class:"form mx-auto w-2/3 bg-white p-8" do |f| %>
-
+  <% if @user.errors.any? %>
+       <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+      </ul
+   <% end %>
   <%= f.label :name %>
   <%= f.text_field :name, class:"border-gray-50" %>
   <%= f.label :password%>
