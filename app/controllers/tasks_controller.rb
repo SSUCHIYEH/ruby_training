@@ -1,14 +1,11 @@
 class TasksController < ApplicationController
+  before_action :require_login
+  before_action :current_user, only: %i[create]
   before_action :find_task, only: %i[edit update destroy]
 
   def index
-    if session[:user_id]
-      @user_tasks = Task.includes(:user).where("user_id =?", session[:user_id])
-      @sort_result = sort_by_param
-      @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
-    else
-      redirect_to login_path
-    end
+    @sort_result = sort_by_param
+    @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
   end
 
   def new
@@ -16,11 +13,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    new_task = {
-      user_id: session[:user_id]
-    }
-    new_task.merge!(task_params)
-    @task = Task.new(new_task)
+    @task = @user.tasks.new(task_params)
 
     if @task.save
       redirect_to tasks_path, notice: t("message.create_task_succeed")
@@ -59,9 +52,17 @@ class TasksController < ApplicationController
   def sort_by_param
     if params[:order].present?
       order_by = params[:order].split(' ')
-      @user_tasks.sort_by_param(order_by[0], order_by[1])
+      @user.tasks.sort_by_param(order_by[0], order_by[1])
     else
-      @user_tasks.sort_by_param
+      @user.tasks.sort_by_param
     end
+  end
+
+  def require_login
+    redirect_to login_path if session[:user_id] != true
+  end
+
+  def current_user
+    @user = User.find_by(id: session[:user_id])
   end
 end
