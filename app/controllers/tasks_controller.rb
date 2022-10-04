@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :find_task, only: %i[edit update destroy]
 
   def index
+    @user_tasks = Task.includes(:user).where("user_id =?", session[:user_id])
     @sort_result = sort_by_param
     @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
   end
@@ -11,7 +12,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    new_task = {
+      user_id: session[:user_id]
+    }
+    new_task.merge!(task_params)
+    @task = Task.new(new_task)
 
     if @task.save
       redirect_to tasks_path, notice: t("message.create_task_succeed")
@@ -50,9 +55,9 @@ class TasksController < ApplicationController
   def sort_by_param
     if params[:order].present?
       order_by = params[:order].split(' ')
-      Task.sort_by_param(order_by[0], order_by[1])
+      @user_tasks.sort_by_param(order_by[0], order_by[1])
     else
-      Task.sort_by_param
+      @user_tasks.sort_by_param
     end
   end
 end
