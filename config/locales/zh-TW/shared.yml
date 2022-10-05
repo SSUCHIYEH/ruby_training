@@ -7,6 +7,7 @@ zh-TW:
   order_by: "排序依據"
   login: '登入'
   require_login: '需要登入'
+  signout: '登出'
   
   tab:
     my_task: "我的任務"
