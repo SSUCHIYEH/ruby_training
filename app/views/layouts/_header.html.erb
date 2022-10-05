@@ -1,7 +1,7 @@
 <div class="bg-red-400 p-5 flex w-screen justify-between text-white">
   <div class="text-white text-4xl" >Todo APP</div>
   <div class="flex">
-  <% if !!@current_user %>
+  <% if @current_user.present? %>
     <p>
       Hi, 
       <%= @current_user.name %>

@@ -13,7 +13,7 @@
 
   <body class="bg-blue-50">
     <%= render'layouts/header' %>
-    <% if !!@current_user %>
+    <% if @current_user.present? %>
       <%= render'layouts/tab' %>
     <% end %>
     <main class="container mx-28 mt-8">
