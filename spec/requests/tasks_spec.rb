@@ -4,6 +4,7 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe 'Tasks', type: :request do
+  include_context "with login stuff"
   let!(:user) { create(:user, :first) }
   let!(:task) { create(:task, title: 'TEST', user: user) }
   let(:valid_attributes) do
@@ -17,6 +18,8 @@ RSpec.describe 'Tasks', type: :request do
       user_id: user.id
     }
   end
+
+  before { login_post(user) }
 
   describe '.get_all' do
     it 'read all tasks' do

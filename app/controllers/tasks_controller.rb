@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :verify_user!
   before_action :find_task, only: %i[edit update destroy]
 
   def index
@@ -11,7 +12,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @current_user.tasks.new(task_params)
 
     if @task.save
       redirect_to tasks_path, notice: t("message.create_task_succeed")
@@ -50,9 +51,17 @@ class TasksController < ApplicationController
   def sort_by_param
     if params[:order].present?
       order_by = params[:order].split(' ')
-      Task.sort_by_param(order_by[0], order_by[1])
+      @current_user.tasks.sort_by_param(order_by[0], order_by[1])
     else
-      Task.sort_by_param
+      @current_user.tasks.sort_by_param
+    end
+  end
+
+  def verify_user!
+    if session[:user_id].present?
+      @current_user = User.find_by(id: session[:user_id])
+    else
+      redirect_to login_path
     end
   end
 end
