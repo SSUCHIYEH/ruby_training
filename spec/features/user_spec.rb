@@ -1,18 +1,15 @@
 require 'rails_helper'
-require "shared_stuff"
 require 'faker'
 
 RSpec.describe 'Users management', type: :feature do
-  include_context "with shared stuff"
+  include_context "with login stuff"
   let!(:user) { create(:user) }
   let(:normal) { User.human_attribute_name("role.normal") }
   let(:submit_create) { I18n.t('helpers.submit.create') }
   let(:button_signout) { I18n.t('signout') }
 
   describe 'login' do
-    before do
-      visit login_path
-    end
+    before { visit login_path }
 
     context "when input with user data" do
       it do

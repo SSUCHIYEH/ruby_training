@@ -1,8 +1,4 @@
-RSpec.configure do |rspec|
-  rspec.shared_context_metadata_behavior = :apply_to_host_groups
-end
-
-RSpec.shared_context "with shared stuff", shared_context: :metadata do
+RSpec.shared_context "with login stuff", shared_context: :metadata do
   def user_login(user)
     visit login_path
     within("#login") do
@@ -19,5 +15,5 @@ RSpec.shared_context "with shared stuff", shared_context: :metadata do
 end
 
 RSpec.configure do |rspec|
-  rspec.include_context "with shared stuff", include_shared: true
+  rspec.include_context "with login stuff", include_shared: true
 end

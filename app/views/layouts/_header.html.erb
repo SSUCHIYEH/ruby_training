@@ -1,10 +1,10 @@
 <div class="bg-red-400 p-5 flex w-screen justify-between text-white">
   <div class="text-white text-4xl" >Todo APP</div>
   <div class="flex">
-  <% if loggin_in? %>
+  <% if !!@current_user %>
     <p>
       Hi, 
-      <%= current_user.name %>
+      <%= @current_user.name %>
     </p>
     <%= button_to t("signout"), logout_path, method: :delete %>  
   <% end %>

@@ -1,13 +1,10 @@
 require 'rails_helper'
-require "shared_stuff"
 
 RSpec.describe 'Tasks management', type: :feature do
-  include_context "with shared stuff"
+  include_context "with login stuff"
   let!(:user) { create(:user) }
 
-  before do
-    user_login(user)
-  end
+  before { user_login(user) }
 
   describe 'order' do
     before do

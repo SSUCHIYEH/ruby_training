@@ -2,10 +2,9 @@
 
 require 'rails_helper'
 require 'faker'
-require "shared_stuff"
 
 RSpec.describe 'Tasks', type: :request do
-  include_context "with shared stuff"
+  include_context "with login stuff"
   let!(:user) { create(:user, :first) }
   let!(:task) { create(:task, title: 'TEST', user: user) }
   let(:valid_attributes) do
@@ -20,9 +19,7 @@ RSpec.describe 'Tasks', type: :request do
     }
   end
 
-  before do
-    login_post(user)
-  end
+  before { login_post(user) }
 
   describe '.get_all' do
     it 'read all tasks' do
