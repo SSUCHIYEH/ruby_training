@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_login
-  before_action :current_user, only: %i[create]
+  before_action :current_user
   before_action :find_task, only: %i[edit update destroy]
 
   def index
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
   end
 
   def require_login
-    redirect_to login_path if session[:user_id] != true
+    redirect_to login_path unless session[:user_id]
   end
 
   def current_user

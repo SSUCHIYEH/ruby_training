@@ -1,10 +1,18 @@
 require 'rails_helper'
+require "shared_stuff"
 
 RSpec.describe 'Tasks management', type: :feature do
+  include_context "with shared stuff"
+  let!(:user) { create(:user) }
+
+  before do
+    user_login(user)
+  end
+
   describe 'order' do
     before do
-      create(:task, :low, :next_year, title: "next_year")
-      create(:task, :high, title: "this_year")
+      create(:task, :low, :next_year, title: "next_year", user: user)
+      create(:task, :high, title: "this_year", user: user)
       visit "/tasks"
     end
 
@@ -105,11 +113,11 @@ RSpec.describe 'Tasks management', type: :feature do
   end
 
   def generate_not_started_tasks
-    create_list(:task, 3, title: "not_started")
+    create_list(:task, 3, title: "not_started", user: user)
   end
 
   def generate_complete_tasks
-    create_list(:task, 3, :complete, title: "complete")
+    create_list(:task, 3, :complete, title: "complete", user: user)
   end
 
   def search_complete_by_title_status
