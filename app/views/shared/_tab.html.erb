@@ -10,10 +10,10 @@
   </div>
   <div class="py-8 group relative min-w-8">
     <% if params[:controller] == 'admin/users' %>
-      <%= button_to t("tab.manage_user"), admin_path ,method: :get, class:"text-red-400" %>
+      <%= button_to t("tab.manage_user"), admin_path ,method: :get, class:"text-red-400", id: 'tab_admin' %>
       <div class="absolute bottom-0 bg-red-400 w-full h-1"></div>
     <% else %>
-      <%= button_to t("tab.manage_user"), admin_path, method: :get, class:"group-hover:text-red-400" %>
+      <%= button_to t("tab.manage_user"), admin_path, method: :get, class:"group-hover:text-red-400", id: 'tab_admin' %>
       <div class="absolute bottom-0 group-hover:bg-red-400 w-full h-1"></div>
     <% end %>
   </div>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Tasks management', type: :feature do
-  include_context "with login stuff"
+  include_context "with user stuff"
   let!(:user) { create(:user) }
 
   before { user_login(user) }
