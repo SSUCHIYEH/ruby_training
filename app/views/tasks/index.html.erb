@@ -32,12 +32,12 @@
       <td><%= task.end_time %></td>
       <td>
         <%= link_to edit_task_path(task) do %>
-          <%= image_tag "/images/edit.png", class: "w-4 h-4" %>
+          <%= image_tag "edit.png", class: "w-4 h-4" %>
         <% end %>
       </td>
       <td>
         <%= link_to task ,data: { turbo_method: :delete, turbo_confirm: t("message.delete_task_confirm") } do %>
-          <%= image_tag "/images/close.png", class: "w-4 h-4" %>
+          <%= image_tag "close.png", class: "w-4 h-4" %>
         <% end %>
       </td>
     </tr>
