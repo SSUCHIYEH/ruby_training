@@ -11,7 +11,7 @@
     <tr>
       <td><%= User.human_attribute_name :name %></td>
       <td><%= User.human_attribute_name :role %></td>
-      <td colspan="4">任務數量</td>
+      <td colspan="4"><%= t('tasks_number') %></td>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +26,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to admin_user_tasks_path(user), id: 'tasks' do %>
+        <%= link_to tasks_admin_user_path(user), id: 'tasks' do %>
           <%= image_tag "tasks.png", class: "w-4 h-4" %>
         <% end %>
       </td>

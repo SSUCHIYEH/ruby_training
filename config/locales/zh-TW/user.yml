@@ -2,6 +2,7 @@ zh-TW:
   signup_user: '註冊新用戶'
   edit_user: '編輯用戶'
   new_user: '新增用戶'
+  tasks_number: '任務數量'
   activerecord:
     attributes:
       user:

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'admin/users'
   resources :tasks
   # SESSION
   get 'login', to: 'sessions#new'
@@ -11,8 +10,12 @@ Rails.application.routes.draw do
   # ADMIN
   namespace :admin do
     get '', to: 'users#index', as: '/'
-    get 'user/:id/tasks', to: 'users#tasks', as: 'user_tasks'
-    resources :users
+    # get 'user/:id/tasks', to: 'users#tasks', as: 'user_tasks'
+    resources :users do
+      member do
+        get 'tasks'
+      end
+    end
   end
   root to: "tasks#index"
 end

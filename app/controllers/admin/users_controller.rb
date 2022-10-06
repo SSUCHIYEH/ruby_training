@@ -35,7 +35,6 @@ module Admin
     end
 
     def destroy
-      Rails.logger.debug @user
       @user.destroy
       redirect_to admin_path, notice: t("message.delete_user_succeed")
     end

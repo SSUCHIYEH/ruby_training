@@ -1,6 +1,6 @@
 RSpec.shared_context "with user stuff", shared_context: :metadata do
-  let(:submit_create) { I18n.t('helpers.submit.create') }
-  let(:submit_update) { I18n.t('helpers.submit.update') }
+  let(:btn_create) { I18n.t('helpers.submit.create') }
+  let(:btn_update) { I18n.t('helpers.submit.update') }
   def user_login(user)
     visit login_path
     within("#login") do

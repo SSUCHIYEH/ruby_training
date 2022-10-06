@@ -26,7 +26,7 @@ RSpec.describe 'Users management', type: :feature do
     context "when fill form click admin" do
       it do
         sign_up_user(Faker::Name.last_name, Faker::Coffee.variety)
-        click_button submit_create
+        click_button btn_create
         expect(page).to have_content(I18n.t('message.signup_succeed'))
       end
     end

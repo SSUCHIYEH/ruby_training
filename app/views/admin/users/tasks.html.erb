@@ -25,8 +25,8 @@
     <% @tasks.each do |task| %>
     <tr>
       <td id="title"><%= task.title %></td>
-      <td><%= Task.human_attribute_name [:status, task.status].join(".") %></td>
-      <td id="priority"><%= Task.human_attribute_name [:priority, task.priority].join(".") %></td>
+      <td><%= task_status(task) %></td>
+      <td id="priority"><%= task_priority(task) %></td>
       <td><%= task.start_time %></td>
       <td><%= task.end_time %></td>
     </tr>

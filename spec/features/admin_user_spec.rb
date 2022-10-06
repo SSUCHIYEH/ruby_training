@@ -30,7 +30,7 @@ RSpec.describe 'Admin Users', type: :feature do
       it do
         find('#new_user').click
         sign_up_user('admin_create', Faker::Coffee.variety)
-        click_button submit_create
+        click_button btn_create
         expect(page).to have_content(I18n.t('message.signup_succeed'))
         expect(page).to have_content('admin_create')
       end
@@ -43,9 +43,9 @@ RSpec.describe 'Admin Users', type: :feature do
       refresh
     end
 
-    context "when update user data" do
-      it { expect(find("tbody tr:nth-child(2) #name")).to have_content('NEW') }
+    it { expect(find("tbody tr:nth-child(2) #name")).to have_content('NEW') }
 
+    context "when update user data" do
       it do
         find("tbody tr:nth-child(2) #edit").click
         edit_user('UPDATE')
@@ -61,9 +61,9 @@ RSpec.describe 'Admin Users', type: :feature do
       refresh
     end
 
-    context "when click delete button" do
-      it { expect(find("tbody tr:nth-child(2) #name")).to have_content('DELETE') }
+    it { expect(find("tbody tr:nth-child(2) #name")).to have_content('DELETE') }
 
+    context "when click delete button" do
       it do
         find("tbody tr:nth-child(2) #delete").click
         expect(page).to have_content(I18n.t('message.delete_user_succeed'))
@@ -75,18 +75,15 @@ RSpec.describe 'Admin Users', type: :feature do
   describe 'get user tasks' do
     let!(:have_task_user) { create(:user, name: 'HAVETASK') }
 
-    context "when user have no task" do
-      it do
-        refresh
-        expect(find("tbody tr:nth-child(2) #name")).to have_content('HAVETASK')
-        expect(find("tbody tr:nth-child(2) #tasks_number")).to have_content('0')
-      end
+    before do
+      create(:task, title: 'NEWTASK', user: have_task_user)
+      refresh
     end
+
+    it { expect(find("tbody tr:nth-child(2) #name")).to have_content('HAVETASK') }
 
     context "when user create task" do
       it do
-        create(:task, title: 'NEWTASK', user: have_task_user)
-        refresh
         expect(find("tbody tr:nth-child(2) #tasks_number")).to have_content('1')
         find("tbody tr:nth-child(2) #tasks").click
         refresh
@@ -99,6 +96,6 @@ RSpec.describe 'Admin Users', type: :feature do
     within("#form_user") do
       fill_in "user_name", with: name
     end
-    click_button submit_update
+    click_button btn_update
   end
 end
