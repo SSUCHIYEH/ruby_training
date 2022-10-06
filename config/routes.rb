@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admin/users'
   resources :tasks
   # SESSION
   get 'login', to: 'sessions#new'
@@ -6,14 +7,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   # USER
   get 'sign_up', to: 'users#new'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:create]
   # ADMIN
-  get 'admin', to: 'admin#index'
-  post 'admin', to: 'admin#create', as: 'admin_create_user'
-  delete 'admin', to: 'admin#destroy', as: 'admin_delete_user'
-  patch 'admin', to: 'admin#update', as: 'admin_update_user'
-  get 'admin/new', to: 'admin#new', as: 'admin_new_user'
-  get 'admin/tasks/:id', to: 'admin#user_tasks', as: 'admin_user_tasks'
-  get 'admin/edit/:id', to: 'admin#edit', as: 'admin_edit_user'
+  namespace :admin do
+    get '', to: 'users#index', as: '/'
+    get 'user/:id/tasks', to: 'users#tasks', as: 'user_tasks'
+    resources :users
+  end
   root to: "tasks#index"
 end
