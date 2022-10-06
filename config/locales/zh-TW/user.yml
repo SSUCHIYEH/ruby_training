@@ -1,6 +1,7 @@
 zh-TW:
-  new_user: '註冊新用戶'
-
+  signup_user: '註冊新用戶'
+  edit_user: '編輯用戶'
+  new_user: '新增用戶'
   activerecord:
     attributes:
       user:
@@ -16,3 +17,9 @@ zh-TW:
     signout_succeed: '成功登出'
     signup_succeed: '成功註冊'
     signin_succeed: '成功登入'
+    delete_user_succeed: '用戶刪除成功'
+    update_user_succeed: '用戶更新成功'
+    update_user_failed: '用戶更新失敗'
+    create_user_succeed: '用戶新增成功'
+
+
