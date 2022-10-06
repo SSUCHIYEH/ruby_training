@@ -55,7 +55,7 @@ RSpec.describe 'Users management', type: :feature do
   end
 
   def sign_up_user(name, password)
-    within("#sign_up") do
+    within("#form_user") do
       fill_in "user_name", with: name
       fill_in "user_password", with: password
       select normal, from: "user_role"

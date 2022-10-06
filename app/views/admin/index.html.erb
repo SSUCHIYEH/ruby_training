@@ -1,0 +1,38 @@
+<div class="flex content-center justify-between">
+  <%= link_to t('new_user'), admin_new_user_path, class: "text-white bg-red-400 p-2 px-8 rounded-full" %>
+</div>
+<% if flash.any? %>
+    <% flash.each do |type, msg| %>
+    <%= msg %><br/>
+    <% end %>
+<% end %>
+<table class="w-full">
+  <thead>
+    <tr>
+      <td><%= User.human_attribute_name :name %></td>
+      <td><%= User.human_attribute_name :role %></td>
+      <td colspan="4">任務數量</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.role %></td>
+      <td><%= user.tasks.count %></td>
+      <td>
+        <%= link_to admin_edit_user_path(user) do %>
+          <%= image_tag "/images/edit.png", class: "w-4 h-4" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to admin_user_tasks_path(user) do %>
+          <%= image_tag "/images/edit.png", class: "w-4 h-4" %>
+        <% end %>
+      </td>
+      <td>
+      <%= button_to image_tag("/images/close.png", class: "w-4 h-4"), admin_path(id: user.id), method: :delete,form: {data: {turbo_confirm: 'Are you sure?'}} %>
+      </td>
+    </tr>
+    <% end %>
+</tbody>

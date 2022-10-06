@@ -1,0 +1,34 @@
+<div class="flex items-center">
+  <%= link_to admin_path do %>
+      <%= image_tag "/images/right-arrow.png", class: "w-4 h-4" %>
+  <% end %>
+  <h1 class="ml-4">
+    <%= t("new_task") %>
+  </h1>
+</div>
+<% if flash.any? %>
+    <% flash.each do |type, msg| %>
+    <%= msg %><br/>
+    <% end %>
+<% end %>
+<table class="w-full">
+  <thead>
+    <tr>
+      <td><%= Task.human_attribute_name :title %></td>
+      <td><%= Task.human_attribute_name :status %></td>
+      <td><%= Task.human_attribute_name :priority %></td>
+      <td><%= Task.human_attribute_name :start_time %></td>
+      <td><%= Task.human_attribute_name :end_time %></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <td id="title"><%= task.title %></td>
+      <td><%= Task.human_attribute_name [:status, task.status].join(".") %></td>
+      <td id="priority"><%= Task.human_attribute_name [:priority, task.priority].join(".") %></td>
+      <td><%= task.start_time %></td>
+      <td><%= task.end_time %></td>
+    </tr>
+    <% end %>
+</tbody>

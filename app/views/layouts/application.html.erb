@@ -12,9 +12,9 @@
   </head>
 
   <body class="bg-blue-50">
-    <%= render'layouts/header' %>
+    <%= render'shared/header' %>
     <% if @current_user.present? %>
-      <%= render'layouts/tab' %>
+      <%= render'shared/tab' %>
     <% end %>
     <main class="container mx-28 mt-8">
       <%= yield %>
