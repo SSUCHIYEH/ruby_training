@@ -11,6 +11,10 @@ module TasksHelper
     Task.priorities.map { |k, _v| [Task.human_attribute_name([:priority, k].join('.')), k] }
   end
 
+  def tags_options
+    Tag.all.map { |tag| [tag.name, tag.id] }
+  end
+
   def order_options
     [
       [I18n.t("order_options.priority_desc"), "priority desc"],

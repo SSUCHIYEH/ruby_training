@@ -2,6 +2,7 @@
   <%= form_tag tasks_path, method: :get, id:"search" do %>
     <%= text_field_tag :title, params[:title], placeholder: t("search_title"), id:"title", class:"border-gray-50" %>
     <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t("search_status") %>
+    <%= select_tag :tag_id, options_for_select(tags_options, params[:tag_id]), prompt: '搜尋標籤'  %>
     <%= select_tag :order, options_for_select(order_options, params[:order]), prompt: t("order_by")  %>
     <%= submit_tag t("search"), name: nil %>
   <% end %>
@@ -19,7 +20,8 @@
       <td><%= Task.human_attribute_name :status %></td>
       <td><%= Task.human_attribute_name :priority %></td>
       <td><%= Task.human_attribute_name :start_time %></td>
-      <td colspan="3"><%= Task.human_attribute_name :end_time %></td>
+      <td><%= Task.human_attribute_name :end_time %></td>
+      <td colspan="3"><%= Task.human_attribute_name :tag %></td>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +33,11 @@
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
         <td>
+          <% task.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %>
+        </td>
+        <td>
           <%= link_to edit_task_path(task) do %>
             <%= image_tag "edit.png", class: "w-4 h-4" %>
           <% end %>
@@ -40,6 +47,7 @@
             <%= image_tag "close.png", class: "w-4 h-4" %>
           <% end %>
         </td>
+        
       </tr>
     <% end %>
   </tbody>
