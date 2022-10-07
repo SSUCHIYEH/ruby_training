@@ -4,10 +4,14 @@ FactoryBot.define do
     password { Faker::Coffee.variety }
     role { Faker::Number.between(from: 0, to: 1) }
 
-    trait :first do
-      name { "NormalFirst" }
-      password { 'password1' }
+    trait :normal do
+      name { "NORMAL" }
       role { 0 }
+    end
+
+    trait :admin do
+      name { "ADMIN" }
+      role { 1 }
     end
   end
 end

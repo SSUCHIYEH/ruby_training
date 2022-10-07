@@ -11,7 +11,7 @@ zh-TW:
         role: "身份"
       user/role:
         normal: "一般使用者"
-        manager: "管理者"
+        admin: "管理者"
 
   message:
     input_error: "輸入錯誤"
@@ -19,8 +19,8 @@ zh-TW:
     signup_succeed: '成功註冊'
     signin_succeed: '成功登入'
     delete_user_succeed: '用戶刪除成功'
+    delete_user_failed: '用戶刪除失敗'
     update_user_succeed: '用戶更新成功'
     update_user_failed: '用戶更新失敗'
     create_user_succeed: '用戶新增成功'
-
-
+    require_admin: '權限不足'
