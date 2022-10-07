@@ -2,10 +2,9 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe 'Users management', type: :feature do
-  include_context "with login stuff"
+  include_context "with user stuff"
   let!(:user) { create(:user) }
   let(:normal) { User.human_attribute_name("role.normal") }
-  let(:submit_create) { I18n.t('helpers.submit.create') }
   let(:button_signout) { I18n.t('signout') }
 
   describe 'login' do
@@ -24,17 +23,10 @@ RSpec.describe 'Users management', type: :feature do
       visit sign_up_path
     end
 
-    let(:user_attr) do
-      {
-        name: 'new_user',
-        password: 'new_password'
-      }
-    end
-
-    context "when sign_up with new user" do
+    context "when fill form click admin" do
       it do
         sign_up_user(Faker::Name.last_name, Faker::Coffee.variety)
-        click_button submit_create
+        click_button btn_create
         expect(page).to have_content(I18n.t('message.signup_succeed'))
       end
     end
@@ -51,14 +43,6 @@ RSpec.describe 'Users management', type: :feature do
         click_button button_signout
         expect(page).to have_content(I18n.t('message.signout_succeed'))
       end
-    end
-  end
-
-  def sign_up_user(name, password)
-    within("#sign_up") do
-      fill_in "user_name", with: name
-      fill_in "user_password", with: password
-      select normal, from: "user_role"
     end
   end
 end

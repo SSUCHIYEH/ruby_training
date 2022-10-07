@@ -1,12 +1,10 @@
 <div class="flex flex-col items-center">
   <h1 class="text-red-400 text-4xl">Todo app</h1>
-
   <% if flash.any? %>
     <% flash.each do |type, msg| %>
       <%= msg %><br/>
     <% end %>
   <% end %>
-
   <%= form_tag '/login', class: "form", id:"login" do %>
       <%= text_field_tag :name, params[:name], placeholder: User.human_attribute_name("name"),id: 'name', class: "w-2/4" %>
       <%= password_field_tag :password, params[:password], placeholder: User.human_attribute_name("password"), id: 'password', class: "w-2/4" %>

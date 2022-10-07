@@ -1,9 +1,9 @@
 <div class="flex items-center">
-  <%= link_to login_path do %>
-    <%= image_tag "right-arrow.png", class: "w-4 h-4" %>
+  <%= link_to admin_path do %>
+      <%= image_tag "right-arrow.png", class: "w-4 h-4" %>
   <% end %>
   <h1 class="ml-4">
-    <%= t("new_user") %>
+    <%= t("signup_user") %>
   </h1>
 </div>
 <%= render 'shared/form_user', user: @user %>

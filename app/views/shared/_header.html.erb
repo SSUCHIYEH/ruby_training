@@ -3,8 +3,7 @@
   <div class="flex">
   <% if @current_user.present? %>
     <p>
-      Hi, 
-      <%= @current_user.name %>
+      Hi, <%= @current_user.name %>
     </p>
     <%= button_to t("signout"), logout_path, method: :delete %>  
   <% end %>

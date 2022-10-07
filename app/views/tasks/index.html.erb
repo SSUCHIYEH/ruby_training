@@ -24,23 +24,24 @@
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
-    <tr>
-      <td id="title"><%= task.title %></td>
-      <td><%= Task.human_attribute_name [:status, task.status].join(".") %></td>
-      <td id="priority"><%= Task.human_attribute_name [:priority, task.priority].join(".") %></td>
-      <td><%= task.start_time %></td>
-      <td><%= task.end_time %></td>
-      <td>
-        <%= link_to edit_task_path(task) do %>
-          <%= image_tag "/images/edit.png", class: "w-4 h-4" %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to task ,data: { turbo_method: :delete, turbo_confirm: t("message.delete_task_confirm") } do %>
-          <%= image_tag "/images/close.png", class: "w-4 h-4" %>
-        <% end %>
-      </td>
-    </tr>
+      <tr>
+        <td id="title"><%= task.title %></td>
+        <td><%= task_status(task) %></td>
+        <td id="priority"><%= task_priority(task) %></td>
+        <td><%= task.start_time %></td>
+        <td><%= task.end_time %></td>
+        <td>
+          <%= link_to edit_task_path(task) do %>
+            <%= image_tag "edit.png", class: "w-4 h-4" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to task ,data: { turbo_method: :delete, turbo_confirm: t("message.delete_task_confirm") } do %>
+            <%= image_tag "close.png", class: "w-4 h-4" %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-</tbody>
+  </tbody>
+</table>
 <%= paginate @tasks %>
