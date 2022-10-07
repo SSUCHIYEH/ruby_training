@@ -5,7 +5,7 @@ FactoryBot.define do
     role { Faker::Number.between(from: 0, to: 1) }
 
     trait :normal do
-      name { "NormalFirst" }
+      name { "NORMAL" }
       password { 'password1' }
       role { 0 }
     end

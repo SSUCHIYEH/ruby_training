@@ -57,18 +57,18 @@ RSpec.describe 'Admin Users', type: :feature do
 
   describe 'delete user' do
     before do
-      create(:user, name: 'DELETE')
+      create(:user, :normal)
       refresh
     end
 
     it { expect(find("tbody tr:nth-child(1) #name")).to have_content('ADMIN') }
-    it { expect(find("tbody tr:nth-child(2) #name")).to have_content('DELETE') }
+    it { expect(find("tbody tr:nth-child(2) #name")).to have_content('NORMAL') }
 
     context "when click delete button" do
       it do
         find("tbody tr:nth-child(2) #delete").click
         expect(page).to have_content(I18n.t('message.delete_user_succeed'))
-        expect(page).not_to have_content('DELETE')
+        expect(page).not_to have_content('NORMAL')
       end
     end
 
