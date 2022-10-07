@@ -54,11 +54,9 @@ module Admin
     end
 
     def verify_admin!
-      if session[:user_id].present? && User.find_by(id: session[:user_id]).admin?
-        @current_user = User.find_by(id: session[:user_id])
-      else
-        redirect_to tasks_path, notice: t('message.require_admin')
-      end
+      return if current_user&.admin?
+
+      redirect_to tasks_path, notice: t('message.require_admin')
     end
   end
 end

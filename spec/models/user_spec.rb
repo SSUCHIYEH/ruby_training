@@ -6,13 +6,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Before_destroy' do
+    subject { admin.destroy }
+
     let!(:admin) { create(:user, :admin) }
 
     context 'when delete last admin' do
-      it do
-        admin.destroy
-        expect(described_class.count).to eq 1
-      end
+      it { is_expected.to be_falsy }
     end
   end
 end
