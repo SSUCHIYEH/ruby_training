@@ -2,9 +2,9 @@
   <% if @task.errors.any? %>
     <ul>
       <% @task.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+        <li><%= msg %></li>
       <% end %>
-    </ul
+    </ul>
   <% end %>
   <div class="grid gap-4 grid-cols-3 mb-4">
     <div class="col-span-2">
