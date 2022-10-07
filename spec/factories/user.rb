@@ -6,13 +6,11 @@ FactoryBot.define do
 
     trait :normal do
       name { "NORMAL" }
-      password { 'password1' }
       role { 0 }
     end
 
     trait :admin do
       name { "ADMIN" }
-      password { 'password1' }
       role { 1 }
     end
   end
