@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   # ADMIN
   namespace :admin do
     get '/', to: 'users#index', as: '/'
-    # get 'user/:id/tasks', to: 'users#tasks', as: 'user_tasks'
     resources :users do
       member do
         get 'tasks'

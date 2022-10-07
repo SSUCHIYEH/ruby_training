@@ -1,6 +1,7 @@
 module Admin
   class UsersController < ApplicationController
     before_action :verify_user!
+    before_action :verify_admin!
     before_action :find_user, only: %i[edit update tasks destroy]
     def index
       @users = User.all
@@ -35,8 +36,12 @@ module Admin
     end
 
     def destroy
-      @user.destroy
-      redirect_to admin_path, notice: t("message.delete_user_succeed")
+      flash.alert = if @user.destroy
+                      t("message.delete_user_succeed")
+                    else
+                      t('message.delete_user_failed')
+                    end
+      redirect_to admin_path
     end
 
     private
@@ -47,6 +52,10 @@ module Admin
 
     def find_user
       @user = User.find_by(id: params[:id])
+    end
+
+    def verify_admin!
+      redirect_to tasks_path, notice: t('message.require_admin') if User.find_by(id: session[:user_id]).role != 'admin'
     end
   end
 end

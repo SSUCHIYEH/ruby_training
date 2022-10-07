@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'faker'
 
 RSpec.describe 'Admin Users', type: :feature do
-  let!(:user) { create(:user, name: 'ADMIN') }
+  let!(:user) { create(:user, :admin) }
   let(:normal) { User.human_attribute_name("role.normal") }
   let(:button_signout) { I18n.t('signout') }
 
@@ -61,6 +61,7 @@ RSpec.describe 'Admin Users', type: :feature do
       refresh
     end
 
+    it { expect(find("tbody tr:nth-child(1) #name")).to have_content('ADMIN') }
     it { expect(find("tbody tr:nth-child(2) #name")).to have_content('DELETE') }
 
     context "when click delete button" do
@@ -68,6 +69,14 @@ RSpec.describe 'Admin Users', type: :feature do
         find("tbody tr:nth-child(2) #delete").click
         expect(page).to have_content(I18n.t('message.delete_user_succeed'))
         expect(page).not_to have_content('DELETE')
+      end
+    end
+
+    context "when delete last admin button" do
+      it do
+        find("tbody tr:nth-child(1) #delete").click
+        expect(page).to have_content(I18n.t('message.delete_user_failed'))
+        expect(page).to have_content('ADMIN')
       end
     end
   end
@@ -88,6 +97,23 @@ RSpec.describe 'Admin Users', type: :feature do
         find("tbody tr:nth-child(2) #tasks").click
         refresh
         expect(page).to have_content('NEWTASK')
+      end
+    end
+  end
+
+  describe 'verify admin' do
+    let!(:normal_user) { create(:user, :normal) }
+
+    before do
+      user_login(normal_user)
+      visit tasks_path
+    end
+
+    context "when user not admin" do
+      it do
+        find('#tab_admin').click
+        refresh
+        expect(page).to have_content(I18n.t('message.require_admin'))
       end
     end
   end
