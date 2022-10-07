@@ -7,9 +7,9 @@
   </h1>
 </div>
 <% if flash.any? %>
-    <% flash.each do |type, msg| %>
-      <%= msg %><br/>
-    <% end %>
+  <% flash.each do |type, msg| %>
+    <%= msg %><br/>
+  <% end %>
 <% end %>
 <table class="w-full">
   <thead>
@@ -19,6 +19,7 @@
       <td><%= Task.human_attribute_name :priority %></td>
       <td><%= Task.human_attribute_name :start_time %></td>
       <td><%= Task.human_attribute_name :end_time %></td>
+      <td><%= Task.human_attribute_name :tag %></td>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,11 @@
         <td id="priority"><%= task_priority(task) %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
+        <td>
+          <% task.tags.each do |tag| %>
+            <p class='p-2 text-center bg-red-50 text-red-300 rounded mb-1'><%= tag.name %></p>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

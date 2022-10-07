@@ -9,9 +9,9 @@
   <%= link_to t("new_task"), new_task_path, class: "text-white bg-red-400 p-2 px-8 rounded-full" %>
 </div>
 <% if flash.any? %>
-    <% flash.each do |type, msg| %>
+  <% flash.each do |type, msg| %>
     <%= msg %><br/>
-    <% end %>
+  <% end %>
 <% end %>
 <table class="w-full">
   <thead>
@@ -34,7 +34,7 @@
         <td><%= task.end_time %></td>
         <td>
           <% task.tags.each do |tag| %>
-            <%= tag.name %>
+            <p class='p-2 text-center bg-red-50 text-red-300 rounded mb-1'><%= tag.name %></p>
           <% end %>
         </td>
         <td>
@@ -47,7 +47,6 @@
             <%= image_tag "close.png", class: "w-4 h-4" %>
           <% end %>
         </td>
-        
       </tr>
     <% end %>
   </tbody>
