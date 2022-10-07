@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   # ADMIN
   namespace :admin do
-    get '', to: 'users#index', as: '/'
+    get '/', to: 'users#index', as: '/'
     # get 'user/:id/tasks', to: 'users#tasks', as: 'user_tasks'
     resources :users do
       member do

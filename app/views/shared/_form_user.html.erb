@@ -2,7 +2,7 @@
   <% if @user.errors.any? %>
     <ul>
       <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+        <li><%= msg %></li>
       <% end %>
     </ul>
    <% end %>
@@ -14,7 +14,5 @@
   <% end %>
   <%= f.label :role %>
   <%= f.select :role, options_for_select(role_key_options) %>
-
   <%= f.submit %>
-  
 <% end %>

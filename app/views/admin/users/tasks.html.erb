@@ -8,7 +8,7 @@
 </div>
 <% if flash.any? %>
     <% flash.each do |type, msg| %>
-    <%= msg %><br/>
+      <%= msg %><br/>
     <% end %>
 <% end %>
 <table class="w-full">
@@ -23,12 +23,13 @@
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
-    <tr>
-      <td id="title"><%= task.title %></td>
-      <td><%= task_status(task) %></td>
-      <td id="priority"><%= task_priority(task) %></td>
-      <td><%= task.start_time %></td>
-      <td><%= task.end_time %></td>
-    </tr>
+      <tr>
+        <td id="title"><%= task.title %></td>
+        <td><%= task_status(task) %></td>
+        <td id="priority"><%= task_priority(task) %></td>
+        <td><%= task.start_time %></td>
+        <td><%= task.end_time %></td>
+      </tr>
     <% end %>
-</tbody>
+  </tbody>
+</table>
