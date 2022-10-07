@@ -7,7 +7,6 @@ FactoryBot.define do
     status { 'not_started' }
     priority { 'medium' }
     association :user
-
     trait :important do
       status { 'in_progress' }
       priority { 'high' }
@@ -28,6 +27,10 @@ FactoryBot.define do
 
     trait :low do
       priority { 'low' }
+    end
+
+    trait :with_work_tag do
+      after(:create) { |task| task.tags << create(:tag, :work) }
     end
   end
 end

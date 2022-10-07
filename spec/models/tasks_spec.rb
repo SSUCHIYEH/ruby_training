@@ -4,6 +4,7 @@ require 'faker'
 RSpec.describe Task, type: :model do
   describe 'Association' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:tags).through(:tags_tasks) }
   end
 
   describe 'Validation' do
