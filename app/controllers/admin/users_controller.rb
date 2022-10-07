@@ -1,6 +1,5 @@
 module Admin
   class UsersController < ApplicationController
-    before_action :verify_user!
     before_action :verify_admin!
     before_action :find_user, only: %i[edit update tasks destroy]
     def index
@@ -55,7 +54,11 @@ module Admin
     end
 
     def verify_admin!
-      redirect_to tasks_path, notice: t('message.require_admin') if User.find_by(id: session[:user_id]).role != 'admin'
+      if session[:user_id].present? && User.find_by(id: session[:user_id]).admin?
+        @current_user = User.find_by(id: session[:user_id])
+      else
+        redirect_to tasks_path, notice: t('message.require_admin')
+      end
     end
   end
 end
