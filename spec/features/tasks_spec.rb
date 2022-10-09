@@ -69,7 +69,6 @@ RSpec.describe 'Tasks management', type: :feature do
     before do
       generate_not_started_tasks
       generate_complete_tasks
-      create(:task, :with_work_tag, user: user)
       visit "/tasks"
     end
 
@@ -109,8 +108,13 @@ RSpec.describe 'Tasks management', type: :feature do
     end
 
     context "when search by tag" do
+      before do
+        create(:task, :with_work_tag, user: user)
+        refresh
+      end
+
       it do
-        search_work_tag
+        search_tag('WORK')
         expect(find("tbody")).to have_content("WORK")
       end
     end
@@ -132,9 +136,9 @@ RSpec.describe 'Tasks management', type: :feature do
     end
   end
 
-  def search_work_tag
+  def search_tag(name)
     within("#search") do
-      select('WORK', from: "tag_id")
+      select(name, from: "tag_id")
     end
     click_button I18n.t("search")
   end

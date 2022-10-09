@@ -2,7 +2,7 @@
   <%= form_tag tasks_path, method: :get, id:"search" do %>
     <%= text_field_tag :title, params[:title], placeholder: t("search_title"), id:"title", class:"border-gray-50" %>
     <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t("search_status") %>
-    <%= select_tag :tag_id, options_for_select(tags_options, params[:tag_id]), prompt: '搜尋標籤'  %>
+    <%= select_tag :tag_id, options_for_select(tags_options, params[:tag_id]), prompt: t('search_tag')  %>
     <%= select_tag :order, options_for_select(order_options, params[:order]), prompt: t("order_by")  %>
     <%= submit_tag t("search"), name: nil %>
   <% end %>

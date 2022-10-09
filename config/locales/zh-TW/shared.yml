@@ -4,6 +4,7 @@ zh-TW:
   search: "搜尋"
   search_status: "搜尋狀態"
   search_title: "搜尋標題"
+  search_tag: '搜尋標籤'
   order_by: "排序依據"
   login: '登入'
   require_login: '需要登入'
