@@ -21,6 +21,10 @@
       <%= f.label :priority %>
       <%= f.select :priority, options_for_select(priority_key_options , @task.priority) %>
     </div>
+    <div>
+      <%= f.label :tag %>
+      <%= f.select :tag_ids, options_for_select(tags_options, @task.tag_ids), {}, multiple: true %>
+    </div>
   </div>
   <div class="grid gap-4 grid-cols-3 mb-4">
     <div>

@@ -2,15 +2,16 @@
   <%= form_tag tasks_path, method: :get, id:"search" do %>
     <%= text_field_tag :title, params[:title], placeholder: t("search_title"), id:"title", class:"border-gray-50" %>
     <%= select_tag :status, options_for_select(status_value_options, params[:status]), prompt: t("search_status") %>
+    <%= select_tag :tag_id, options_for_select(tags_options, params[:tag_id]), prompt: t('search_tag')  %>
     <%= select_tag :order, options_for_select(order_options, params[:order]), prompt: t("order_by")  %>
     <%= submit_tag t("search"), name: nil %>
   <% end %>
   <%= link_to t("new_task"), new_task_path, class: "text-white bg-red-400 p-2 px-8 rounded-full" %>
 </div>
 <% if flash.any? %>
-    <% flash.each do |type, msg| %>
+  <% flash.each do |type, msg| %>
     <%= msg %><br/>
-    <% end %>
+  <% end %>
 <% end %>
 <table class="w-full">
   <thead>
@@ -19,7 +20,8 @@
       <td><%= Task.human_attribute_name :status %></td>
       <td><%= Task.human_attribute_name :priority %></td>
       <td><%= Task.human_attribute_name :start_time %></td>
-      <td colspan="3"><%= Task.human_attribute_name :end_time %></td>
+      <td><%= Task.human_attribute_name :end_time %></td>
+      <td colspan="3"><%= Task.human_attribute_name :tag %></td>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +32,11 @@
         <td id="priority"><%= task_priority(task) %></td>
         <td><%= task.start_time %></td>
         <td><%= task.end_time %></td>
+        <td>
+          <% task.tags.each do |tag| %>
+            <p class='p-2 text-center bg-red-50 text-red-300 rounded mb-1'><%= tag.name %></p>
+          <% end %>
+        </td>
         <td>
           <%= link_to edit_task_path(task) do %>
             <%= image_tag "edit.png", class: "w-4 h-4" %>

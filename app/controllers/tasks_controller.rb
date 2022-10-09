@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   before_action :verify_user!
   before_action :find_task, only: %i[edit update destroy]
-
   def index
     @sort_result = sort_by_param
     @tasks = @sort_result.search_by_param(*params.slice(:title, :status).values).page(params[:page])
+    @tasks = @tasks.search_by_tag(params[:tag_id])
   end
 
   def new
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :content, :start_time, :end_time, :status, :priority, :user_id)
+    params.require(:task).permit(:title, :content, :start_time, :end_time, :status, :priority, :user_id, tag_ids: [])
   end
 
   def find_task

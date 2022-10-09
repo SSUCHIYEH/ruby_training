@@ -102,9 +102,20 @@ RSpec.describe 'Tasks management', type: :feature do
     context "when search by title and status" do
       it do
         search_complete_by_title_status
-        click_button I18n.t("search")
         expect(find("tbody")).to have_content("complete")
         expect(find("tbody")).to have_content(zh_complete)
+      end
+    end
+
+    context "when search by tag" do
+      before do
+        create(:task, :with_work_tag, user: user)
+        refresh
+      end
+
+      it do
+        search_tag('WORK')
+        expect(find("tbody")).to have_content("WORK")
       end
     end
   end
@@ -121,6 +132,14 @@ RSpec.describe 'Tasks management', type: :feature do
     within("#search") do
       fill_in "title", with: "complete"
       select(zh_complete, from: "status")
+      click_button I18n.t("search")
     end
+  end
+
+  def search_tag(name)
+    within("#search") do
+      select(name, from: "tag_id")
+    end
+    click_button I18n.t("search")
   end
 end
