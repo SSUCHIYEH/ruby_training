@@ -22,4 +22,5 @@ test:
 
 production:
   <<: *default
-  database: db/ruby_training_production
+  database: db_5xruby_tranning
+  username: db_5xruby_tranning_user
